@@ -36,6 +36,7 @@
             width: 95%;
             height: 130%;
             margin: 0 auto;
+            position: relative;
         }
         .hdIn {
             width: 15%;
@@ -43,7 +44,7 @@
             box-sizing: border-box;
             position: absolute;
             top: 15%;
-            left: 3%;
+            left: 1%;
         }
         #hd {
             width: 100%;
