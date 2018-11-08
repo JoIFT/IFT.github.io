@@ -13,7 +13,7 @@ $(document).ready(function() {
             var wd = parseInt($("#vs").width());
             console.log("창의넓이 : " + wd);
             function rAni(){
-                $(".imgBox").not(":animated").animate({"margin-left" : -wd + "px"}, 2200, function(){
+                $(".imgBox").not(":animated").animate({"margin-left" :"-100%"}, 2200, function(){
                     $(".imgBox li").eq(0).appendTo($(".imgBox"));
                     $(".imgBox").css("margin-left", "0px");
                 });
@@ -27,5 +27,14 @@ $(document).ready(function() {
 $(document).ready(function(){
             $(".menuBox li a").hover(function(){
                 $(this).parent().find("span").toggleClass("on");
+            });
+        });
+
+/* 모바일 메뉴 버튼 과 메뉴 */
+$(document).ready(function(){
+            $(".MmenuBtn").click(function(){
+                $(".MmenuBtn span").toggleClass("on");
+                $(".MmenuBtn").toggleClass("on");
+                $(".MmenuBox").toggleClass("on");
             });
         });
