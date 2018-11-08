@@ -33,6 +33,39 @@
     <script src="js/script.js"></script>
     <link rel="stylesheet" href="css/query.css">
     
+    <style>
+        .MmenuBox {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            background-image: url("./images/MmenuBg.png");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            top: 0;
+            right: -100%;
+            transition: 0.7s;
+        }
+        .login {
+            position: absolute;
+            right: 5%;
+            bottom: 5%;
+        }
+        .login ul {
+            width: 100%;
+            height: auto;
+        }
+        .login ul li {
+            margin: 15% 0%;
+        }
+        .login ul li a {
+            display: block;
+            color: #fff;
+            font-size: 1.3vmax;
+            font-weight: bold;
+            font-family: 'Gothic A1', sans-serif;
+        }
+    </style>
+    
 </head>
 <body>
     <div class="main" id="desktop">
@@ -118,8 +151,14 @@
                             <li>
                                 <a href="">사회공헌</a>
                             </li>
-                    </ul>
+                        </ul>
                     
+                    <div class="login">
+                        <ul>
+                            <li><a href="">Login / sign Up</a></li>
+                            <li><a href="">Settings</a></li>
+                        </ul>
+                    </div>
                     </div>
                     
                </div>

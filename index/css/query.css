@@ -20,6 +20,8 @@
                 display: inline-block;
                 width: 10%;
                 height: auto;
+                z-index: 9999;
+                position: relative;
             }
             .Mlogo img {
                 display: block;
@@ -29,31 +31,30 @@
             .MmenuBox {
                 width: 80%;
                 height: auto;
-                background-color: #3f3f3f;
                 position: absolute;
                 top: 0;
                 right: -100%;
                 transition: 0.7s;
             }
             .MmenuBox.on {
-                right: -5%;
+                right: 0%;
             }
             .MmenuLst {
                 width: 90%;
                 height: auto;
-                margin: 0 auto;
+                margin: 20% auto;
             }
             .MmenuLst li {
                 width: 50%;
                 height: auto;
-                margin: 5% 0%;
+                margin: 6% 0%;
             }
             .MmenuLst li a {
                 display: block;
                 color: #fff;
                 font-size: 2vmax;
-                font-weight: 300;
-                font-family: 'Jua', sans-serif;
+                font-weight: bold;
+                font-family: 'Gothic A1', sans-serif;
             }
             .MmenuBtn {
                 width: 10%;
@@ -157,6 +158,8 @@
             #ft {
                 clear: both;
                 padding-top: 20%;
+                z-index: 9999;
+                position: relative;
             }
             .ftSearch {
                 display: none;
