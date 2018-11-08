@@ -115,14 +115,6 @@
                 top: 15%;
                 left: 40%;
             }
-            @keyframes dont {
-                0% {
-                    transform: rotate(0deg);
-                }
-                100% {
-                    transform: rotate(360deg);
-                }
-            }
             #con1 {
                 width: 100%;
                 height: auto;
@@ -176,7 +168,7 @@
                 display: none;
             }
         }
-        @media screen and (min-width:960px) and(max-width:1199px) {
+        @media screen and (min-width:960px) and (max-width:1199px) {
             /* 데스크탑 */
             .Mhd {
                 display: none;
