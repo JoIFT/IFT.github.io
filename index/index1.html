@@ -145,7 +145,7 @@
       }
         #vs {
             width: 100%;
-            height: 850px;
+            height: 820px;
             overflow: hidden;
         }
         #vs ul.vsBox {
@@ -178,7 +178,7 @@
             position: absolute;
             color: #fff;
             font-size: 3vmax;
-            top: 31%;
+            top: 32.5%;
             left: 10%;
             font-weight: bold;
             font-family: 'Nanum Gothic Coding', monospace;
@@ -194,40 +194,12 @@
             z-index: 10;
             display: none;
         }
-        .vsBtn {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            text-align: center;
-        }
-        .vsBtnIcon {
-            position: relative;
-            display: inline-block;
-            vertical-align: top;
-            width: 8px;
-            height: 8px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-        .vsBtnIcon.on {
-            width: 100%;
-        }
-        .vsBtnIcon span.on {
-            position: absolute;
-            top: 0;
-            left: 0;
-            display: inline-block;
-            width: 0;
-            height: 8px;
-            background: #9f2a4b;
-        }
     </style>
     
     <style>
         #ft {
             width: 100%;
-            height: 35%;
+            height: 30%;
         }
         .ftIn {
             width: 90%;
@@ -293,88 +265,48 @@
             height: auto;
         }
     </style>
+    
 
     <script>
         $(document).ready(function(){
-            var wd = parseInt($(".vs li").width());
-            
-            $("#vs .vsBox li .vsTit1").fadeIn(500);
+            var wd = parseInt($("#vs .vsBox li").width());
+
+                    $("#vs .vsBox li .vsTit1").fadeIn(500);
                     $(".vsTit2").delay(500).fadeIn(500);
                     $(".vsTit3").delay(900).fadeIn(500, function(){
                         $(this).not(":animated").animate({"top": "40%"}, 500, function(){
-                            $(this).delay(7100).fadeOut(500);
+                            $(this).delay(4100).fadeOut(500);
                         });
                     });
 
-                    $("#vs .vsBox li .vsTit1").delay(8000).fadeOut(500);
-                    $(".vsTit2").delay(7500).fadeOut(500);
+                    $("#vs .vsBox li .vsTit1").delay(5000).fadeOut(500);
+                    $(".vsTit2").delay(4500).fadeOut(500);
                     $(".vsTit3").css("top", "50%");
             
-                $(".vsBtnIcon.on span.on").delay(700).not(":animated").animate({"width": "100%"}, 8000, function(){
-                        $(".vsBtnIcon.on span").css("width", "0px");
-                    });
-            
-            $(".vsBtnIcon").removeAttr("href");
-                function rAni(){
-                    $("#vs .vsBox").not(":animated").animate({"margin-left" : "-100%"}, 2000, function(){ 
-                        $("#vs .vsBox li .vsTit1").fadeIn(500);
-                        $(".vsTit2").delay(500).fadeIn(500);
-                        $(".vsTit3").delay(900).fadeIn(500, function(){
-                            $(this).not(":animated").animate({"top": "40%"}, 500, function(){
-                                $(this).delay(5100).fadeOut(500);
-                            });
+            function rAni(){
+                $("#vs .vsBox").not(":animated").animate({"margin-left" : "-100%"}, 2000, function(){ 
+                    $("#vs .vsBox li .vsTit1").fadeIn(500);
+                    $(".vsTit2").delay(500).fadeIn(500);
+                    $(".vsTit3").delay(900).fadeIn(500, function(){
+                        $(this).not(":animated").animate({"top": "40%"}, 500, function(){
+                            $(this).delay(2100).fadeOut(500);
                         });
-
-                        $("#vs .vsBox li").eq(0).appendTo($("#vs .vsBox"));
-                        $("#vs .vsBox").css("margin-left", "0px");
-                        $("#vs .vsBox li .vsTit1").delay(6000).fadeOut(500);
-                        $(".vsTit2").delay(5500).fadeOut(500);
-                        $(".vsTit3").css("top", "50%");
-                        
-                        $(".vsBtnIcon.on span.on").delay(700).not(":animated").animate({"width": "100%"}, 5500, function(){
-                        $(".vsBtnIcon.on span").css("width", "0px");
                     });
-
-                    });
-                };
+                    
+                    $("#vs .vsBox li").eq(0).appendTo($("#vs .vsBox"));
+                    $("#vs .vsBox").css("margin-left", "0px");
+                    $("#vs .vsBox li .vsTit1").delay(3000).fadeOut(500);
+                    $(".vsTit2").delay(2500).fadeOut(500);
+                    $(".vsTit3").css("top", "50%");
+                    
+                });
+            };
             
             var intv = setInterval(function(){
                 rAni();
-            }, 8500);
-            
-            $(".vsBtnIcon1").click(function(){
-                $(this).addClass("on");
-                $(this).find(".bar1").addClass("on");
-                $(".bar2, .bar3").removeClass("on");
-                $(this).siblings().removeClass("on");
-                
-                clearInterval();
-                $("#vs .vsBox").not(":animated").animate({"margin-left" : "-100%"}, 2000, function(){ 
-                        $("#vs .vsBox li .vsTit1").fadeIn(500);
-                        $(".vsTit2").delay(500).fadeIn(500);
-                        $(".vsTit3").delay(900).fadeIn(500, function(){
-                            $(this).not(":animated").animate({"top": "40%"}, 500, function(){
-                                $(this).delay(5100).fadeOut(500);
-                            });
-                        });
-
-                        $("#vs .vsBox li").eq(0).appendTo($("#vs .vsBox"));
-                        $("#vs .vsBox").css("margin-left", "0px");
-                        $("#vs .vsBox li .vsTit1").delay(6000).fadeOut(500);
-                        $(".vsTit2").delay(5500).fadeOut(500);
-                        $(".vsTit3").css("top", "50%");
-                        
-                        $(".vsBtnIcon.on span.on").delay(700).not(":animated").animate({"width": "100%"}, 5500, function(){
-                        $(".vsBtnIcon.on span").css("width", "0px");
-                    });
-            });
-                
-            });
-                
-            });
+            }, 5500);
+        });
     </script>
-    
-    
 </head>
 <body>
    <div class="main" id="desktop">
@@ -423,13 +355,6 @@
                            <h2 class="vsTit3">(주)IFT 일동</h2>
                        </li>
                    </ul>
-                   
-                   <div class="vsBtn">
-                    <a href="" class="vsBtnIcon on vsBtnIcon1">
-                        <span class="on bar bar1"></span>
-                    </a>
-                </div>
-                
                </figure>
            </div>
        </div>
