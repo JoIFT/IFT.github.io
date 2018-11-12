@@ -29,9 +29,29 @@
     <script src="javascript/js1.js"></script>
     
     <link rel="stylesheet" href="css/query.css">
+    
+    <script>
+        $(document).ready(function(){
+        var a=0;
+        var intv = setInterval(function(){
+            func(a);
+            if(a<5) { a=a+1; } else { a=0; }
+        }, 1200);
+        function func(b){
+            $(".con2In input[type=radio]").prop("checked", "false");
+            $(".con2In input[type=radio]").eq(b).prop("checked", "true");
+        }
+            $(".label .laBtn").click(function(){
+                clearInterval(intv);
+            });
+    });
+
+    </script>
+    
 
 </head>
-<body oncontextmenu="return false" ondragstart="return false" onselectstart="return false">
+<body>
+  <!--oncontextmenu="return false" ondragstart="return false" onselectstart="return false"-->
    <div class="main" id="desktop">
        <header id="hd">
            <div class="hdIn">
@@ -167,12 +187,12 @@
             
             
             <div class="label">
-                <label for="radio-front"><span class="laBtn on"></span></label>
-                <label for="radio-left"><span class="laBtn"></span></label>
-                <label for="radio-right"><span class="laBtn"></span></label>
-                <label for="radio-top"><span class="laBtn"></span></label>
-                <label for="radio-bottom"><span class="laBtn"></span></label>
-                <label for="radio-back"><span class="laBtn"></span></label>
+                <label for="radio-front"><span class="laBtn laBtn1 on"></span></label>
+                <label for="radio-left"><span class="laBtn laBtn2"></span></label>
+                <label for="radio-right"><span class="laBtn laBtn3"></span></label>
+                <label for="radio-top"><span class="laBtn laBtn4"></span></label>
+                <label for="radio-bottom"><span class="laBtn laBtn5"></span></label>
+                <label for="radio-back"><span class="laBtn laBtn6"></span></label>
             </div>
         </div>
     </div>
