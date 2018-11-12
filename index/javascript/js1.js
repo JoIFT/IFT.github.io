@@ -107,3 +107,12 @@ $(document).ready(function(){
                 $(".sns a.whatH img").attr("src", "./images/whatsapp.png");
             });
         });
+
+$(document).ready(function(){
+			$(document).bind('keydown',function(e){
+				if ( e.keyCode == 123 /* F12 */) {
+					e.preventDefault();
+					e.returnValue = false;
+				}
+			});
+		});
