@@ -116,3 +116,18 @@ $(document).ready(function(){
 				}
 			});
 		});
+
+$(document).ready(function(){
+        var a=0;
+        var intv = setInterval(function(){
+            func(a);
+            if(a<5) { a=a+1; } else { a=0; }
+        }, 1200);
+        function func(b){
+            $(".con2In input[type=radio]").prop("checked", "false");
+            $(".con2In input[type=radio]").eq(b).prop("checked", "true");
+        }
+            $(".label .laBtn").click(function(){
+                clearInterval(intv);
+            });
+    });
