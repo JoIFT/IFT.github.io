@@ -148,6 +148,45 @@
                 height: auto;
                 display: none;
             }
+            .cnb {
+                width: auto;
+                height: auto;
+                position: absolute;
+                top: 15%;
+                right: -50px;
+                border-radius: 0px 25px 25px 0px;
+                background: #333;
+                padding: 10%;
+                padding-top: 1%;
+                z-index: 9999;
+            }
+    
+            .collapName {
+                writing-mode: tb-rl;
+                font-size: 2vmax;
+                font-weight: bold;
+                position: absolute;
+                z-index: 100;
+                right: 2vmax;
+                top: 7.5vmax;
+                color: #fff;
+            }
+            .closeBtn1 {
+                    background: url(../images/collbtn.png);
+                    background-position: 0px 0px;
+                    top: 25px;
+                    right: 15px;
+                    width: 30px;
+                    height: 30px;
+                    display: block;
+                    position: absolute;
+                    font-size: 0;
+                    text-indent: -999px;
+                    cursor: pointer;
+                    z-index: 100;
+                    transition: 0.5s;
+                }
+    
             
         }
         @media screen and (min-width:768px) and (max-width:959px) {
