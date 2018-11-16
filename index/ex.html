@@ -1,619 +1,69 @@
-
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
    
-    <meta charset="UTF-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=no, target-densitydpi=medium-dpi">
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-    <meta name="keywords" content="IFT, 기술, 교육, 무한, 메이커스페이스, 가온누리, 퍼블릭에듀">
-    <meta name="Description" content="Global Education Company - EduTech">
-    <!--[if IE]>
-    <<script src="http://html5shiv.googlecode.com/svn/truk/html5.js>
-    </script>
-    <![endif]-->
+   <style>
+        /* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+    
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto; /* 15% from the top and centered */
+            padding: 20px;
+            border: 1px solid #888;
+            width: 30%; /* Could be more or less, depending on screen size */                          
+        }
+ 
+</style>
 
-    <!-- Firefox, opera (Chrome and safari say thanks but no thanks) -->
-
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <title>:: IFT ::</title>
-    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> 
-
+    
     <script src="https://code.jquery.com/jquery-latest.js"></script>
     
-    <!-- 폰트링크 -->
-    <link href="https://fonts.googleapis.com/css?family=Gothic+A1" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding" rel="stylesheet">
-    
-    
-    <link rel="stylesheet" href="css/style.css">
-
-    <script src="javascript/js1.js"></script>
-    
-    
-    
-    <style>
-        #collapCk1 {
-            display: none;
-        }
-        .collapFrame {
-            position: absolute;
-            z-index: 999;
-            width: 100%;
-            height: 100%;
-            left: -100%;
-            top: 0;
-            background: rgba(0,0,0,0.65);
-            transition: 0.7s;
-        }
-        .cnb {
-            width: auto;
-            height: auto;
-            position: absolute;
-            top: 15%;
-            right: -80px;
-            border-radius: 0px 25px 25px 0px;
-            background-image: url("images/colbg.png");
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            padding: 10%;
-            padding-top: 1%;
-            z-index: 9999;
-        }
-        .cnb li {
-            float: left;
-            margin-left: 25%;
-            margin-top: 10%;
-        }
-        .collapTxtFrame {
-            padding: 5%;
-        }
-        #collapCk1:checked ~ .collapFrame {
-            left: 0;
-        }
-        #collapCk1:checked ~ .collapFrame .cnb {
-            right: auto;
-            left: 0;
-        }
-        .closeBtn1 {
-            background: url(./images/collbtn.png);
-            background-position: 0px 0px;
-            top: 25px;
-            right: 30px;
-            width: 30px;
-            height: 30px;
-            display: block;
-            position: absolute;
-            font-size: 0;
-            text-indent: -999px;
-            cursor: pointer;
-            z-index: 100;
-            transition: 0.5s;
-        }
-        .closeBtn1:hover {
-            background: url(./images/collbtnhover.png);
-        }
-        .closeBtn1.on {
-            transform: rotate(180deg);
-        }
-        .collapName {
-            writing-mode: tb-rl;
-            font-size: 2vmax;
-            font-weight: bold;
-            position: absolute;
-            z-index: 100;
-            right: 1vmax;
-            top: 4.5vmax;
-            color: #fff;
-        }
-        .cnb .collapTxtFrame {
-            width:60%;
-            height: auto;
-            margin-left: -10%;
-        }
-        .collapTit {
-            color: #fff;
-            word-break: break-all;
-            text-align: center;
-            font-size: 1vmax;
-        }
-        .collapTit2 {
-            text-align: center;
-            color: #fff;
-            font-size: 1.9vmax;
-        }
-        .cBox {
-            color: #fff;
-            font-size: 0.9vmax;
-            font-weight: bold;
-            width: 100%;
-            clear: both;
-        }
-        .name {
-            width: 30%;
-            height: auto;
-            border: 0;
-            border-bottom: 1px solid #4571ff;
-            box-sizing: border-box;
-            padding: 2.5%;
-            padding-bottom: 0.5%;
-            background: none;
-            color: #fff;
-            text-align: left;
-        }
-        .name_ {
-            width: 22.5%;
-            height: auto;
-            border: 0;
-            border-bottom: 1px solid #4571ff;
-            box-sizing: border-box;
-            padding: 2.5%;
-            padding-bottom: 0.5%;
-            background: none;
-            color: #fff;
-            text-align: left;
-        }
-        .date {
-            width: 7%;
-            margin-left: 1.5%;
-            height: auto;
-            border: 0;
-            border-bottom: 1px solid #4571ff;
-            box-sizing: border-box;
-            padding: 2.5%;
-            padding-bottom: 0.5%;
-            background: none;
-            color: #fff;
-            text-align: left;
-        }
-        .date1 {
-            width: 8%;
-        }
-        .school {
-            width: 50%;
-            height: auto;
-            border: 0;
-            border-bottom: 1px solid #4571ff;
-            box-sizing: border-box;
-            padding: 2.5%;
-            padding-bottom: 0.5%;
-            background: none;
-            color: #fff;
-            text-align: left;
-        }
-        .school2 {
-            width: 10.5%;
-            height: auto;
-            border: 0;
-            border-bottom: 1px solid #4571ff;
-            box-sizing: border-box;
-            padding: 2.5%;
-            padding-bottom: 0.5%;
-            background: none;
-            color: #fff;
-            text-align: left;
-        }
-        .sex {
-            width: 5.5%;
-            height: auto;
-            border: 0;
-            border-bottom: 1px solid #4571ff;
-            box-sizing: border-box;
-            padding: 2.5%;
-            padding-bottom: 0.5%;
-            background: none;
-            color: #fff;
-            text-align: left;
-        }
-        .num {
-            width: 7%;
-            margin-left: 1.5%;
-            height: auto;
-            border: 0;
-            border-bottom: 1px solid #4571ff;
-            box-sizing: border-box;
-            padding-bottom: 0.5%;
-            background: none;
-            color: #fff;
-            text-align: center;
-        }
-        .num1 {
-            width: 5%;
-        }
-        .address2 {
-            width: 50%;
-            height: auto;
-            border: 0;
-            border-bottom: 1px solid #4571ff;
-            box-sizing: border-box;
-            padding: 2.5%;
-            padding-bottom: 0.5%;
-            background: none;
-            color: #fff;
-            text-align: left;
-        }
-        .num_ {
-            width: 7%;
-            margin-left: 1.5%;
-            height: auto;
-            border: 0;
-            border-bottom: 1px solid #4571ff;
-            box-sizing: border-box;
-            padding-bottom: 0.5%;
-            background: none;
-            color: #fff;
-            text-align: center;
-        }
-        .num1_ {
-            width: 5%;
-        }
-        .right {
-            float: right;
-        }
-        .sel__ {
-            display: inline-block;
-            color: #fff;
-            font-size: 0.7vmax;
-            margin-right: 7.5%;
-            cursor: pointer;
-        }
-        .sel1, .sel2, .sel3 {
-            font-weight: bold;
-            font-size: 0.7vmax;
-            color: #3f3f3f;
-            padding: 1.5%;
-
-            display: none;
-        }
-        .na1, .na2 {
-
-            display: none;
-        }
-        .Cimg {
-            display: block;
-            clear: both;
-            width: 60%;
-            height: auto;
-        }
-        .lic {
-            display: block;
-            font-size: 1vmax;
-            font-weight: bold;
-            background-color: aliceblue;
-            color: #3f3f3f;
-            padding: 1%;
-            text-align: center;
-            width: 20%;
-            height: auto;
-            border: 0;
-        }
-        .closeBox {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background: rgba(63, 63, 63, 0.9);
-            display: none;
-        }
-        .closeBox1 {
-            text-align: center;
-            font-weight: bold;
-            color: #fff;
-            font-size: 5vmax;
-            padding-top: 20%;
-        }
-        .closeBox2 {
-            text-align: center;
-            font-weight: 400;
-            color: #fff;
-            font-size: 1vmax;
-            padding-top: 5%;
-        }
-        .start {
-            display: block;
-            font-weight: bold;
-            font-size: 2vmax;
-            text-align: center;
-            color: #fff;
-            margin-top: 10%;
-        }
-    </style>
-    <link rel="stylesheet" href="css/query.css">
-    
-    <script>
-        $(document).ready(function(){
-           $(".sel__").removeAttr("href");
-            $(".sel__1").click(function(){
-                $(".sel1").fadeIn(500);
-                $(".na1").fadeIn(500);
-                    $(".sel2").css("display", "none");
-                    $(".sel3").css("display", "none");
-                $(".na2").css("display", "none");
-                });
-            $(".sel__2").click(function(){
-                $(".sel2").fadeIn(500);
-                $(".na2").fadeIn(500);
-                    $(".sel1").css("display", "none");
-                    $(".sel3").css("display", "none");
-                $(".na1").css("display", "none");
-                });
-            $(".sel__3").click(function(){
-                $(".sel3").fadeIn(500);
-                 $(".na1").fadeIn(500);
-                    $(".sel1").css("display", "none");
-                    $(".sel2").css("display", "none");
-                $(".na2").css("display", "none");
-                });
-        });
-    </script>
-    
+    <meta charset="UTF-8">
+    <title>Document</title>
 </head>
-
 <body>
-  
-   <div class="main" id="desktop">
-       <header id="hd">
-           <div class="hdIn">
-               <a href="" class="logo">
-                   <img src="./images/logo_on.png" alt="로고">
-                </a>
-                
-                <ul class="menu">
-                    <li><a href="">INTRO</a></li>
-                    <li><a href="">메이커스페이스</a></li>
-                    <li><a href="">퍼블릭에듀</a></li>
-                    <li><a href="">R &amp; D</a></li>
-                    <li><a href="">프렌차이즈</a></li>
-                    <li><a href="">사회공헌</a></li>
-                    <li class="sns"><a href="" class="snsIcon googleH"><img src="./images/google.png" alt="구글아이콘"></a></li>
-                    <li class="sns"><a href="" class="snsIcon instaH"><img src="./images/instagram.png" alt="인스타그램아이콘"></a></li>
-                    <li class="sns"><a href="" class="snsIcon twitterH"><img src="./images/twitter.png" alt="트위터아이콘"></a></li>
-                    <li class="sns"><a href="" class="snsIcon whatH"><img src="./images/whatsapp.png" alt="왓츠아이콘"></a></li>
-                </ul>
-           </div>
-       </header>
-       
-       <div class="Mhd">
-                   <a href="" class="Mlogo">
-                       <img src="./images/logo_on.png" alt="">
-                    </a>
-                    <div class="MmenuBtn">
-                            <span class="MmeLine1"></span>
-                            <span class="MmeLine2"></span>
-                            <span class="MmeLine3"></span>
-                        </div>
-                    <div class="MmenuBox">
-                        <ul class="MmenuLst">
-                            <li>
-                                <a href="">INTRO</a>
-                            </li>
-                            <li>
-                                <a href="">메이커스페이스</a>
-                            </li>
-                            <li>
-                                <a href="">퍼블릭에듀</a>
-                            </li>
-                            <li>
-                                <a href="">R &amp; D</a>
-                            </li>
-                            <li>
-                                <a href="">프렌차이즈</a>
-                            </li>
-                            <li>
-                                <a href="">사회공헌</a>
-                            </li>
-                        </ul>
-                    
-                    <div class="login">
-                        <ul>
-                            <li><a href="">Login / sign Up</a></li>
-                            <li><a href="">Settings</a></li>
-                        </ul>
-                    </div>
-                    </div>
-                    
-               </div>
-       
-       <div class="con" id="con1">
-          <img src="./images/DontIcon.png" alt="stop" class="dont">
-           <div class="con1In">
-               <figure id="vs">
-                   <ul class="vsBox">
-                       <li class="item1">
-                           <img src="./images/vs1.png" alt="배너이미지1">
-                           <h2 class="vsTit1">IFT 홈페이지 리뉴얼 중입니다.</h2>
-                           <h2 class="vsTit2">더욱 좋은모습으로 다가가겠습니다.</h2>
-                           <h2 class="vsTit3">(주)IFT 일동</h2>
-                       </li>
-                       <li class="item2">
-                           <img src="./images/vs2.png" alt="배너이미지2">
-                           <h2 class="vsTit1">IFT 홈페이지 리뉴얼 중입니다.</h2>
-                           <h2 class="vsTit2">더욱 좋은모습으로 다가가겠습니다.</h2>
-                           <h2 class="vsTit3">(주)IFT 일동</h2>
-                       </li>
-                       <li class="item3">
-                           <img src="./images/vs3.png" alt="배너이미지3">
-                           <h2 class="vsTit1">IFT 홈페이지 리뉴얼 중입니다.</h2>
-                           <h2 class="vsTit2">더욱 좋은모습으로 다가가겠습니다.</h2>
-                           <h2 class="vsTit3">(주)IFT 일동</h2>
-                       </li>
-                   </ul>
-                   
-                   <div class="vsBtn">
-                    <a href="" class="vsBtnIcon on vsBtnIcon1">
-                        <span class="on bar bar1"></span>
-                    </a>
-                </div>
-                
-               </figure>
-           </div>
-       </div>
-       
-       <div class="con" id="con2">
-           <div class="con2In">
-                <input type="radio" checked id="radio-front" name="select-face"/>    
-                <input type="radio" id="radio-left" name="select-face"/>
-                <input type="radio" id="radio-right" name="select-face"/>
-                <input type="radio" id="radio-top" name="select-face"/>
-                <input type="radio" id="radio-bottom" name="select-face"/>
-                <input type="radio" id="radio-back" name="select-face"/>
-
-            <div class="separator"></div>
-
-
-            <div class="space3d">
-
-
-                <div class="_3dbox">
-                  <div class="_3dface _3dface--front"></div>
-                  <div class="_3dface _3dface--top"></div>
-                  <div class="_3dface _3dface--bottom"></div>
-                  <div class="_3dface _3dface--left"></div>
-                  <div class="_3dface _3dface--right"></div>
-                  <div class="_3dface _3dface--back"></div>
-                </div>
+        <!-- The Modal -->
+    <div id="myModal" class="modal">
+ 
+      <!-- Modal content -->
+      <div class="modal-content">
+                <p style="text-align: center;"><span style="font-size: 14pt;"><b><span style="font-size: 24pt;">공지</span></b></span></p>
+                <p style="text-align: center; line-height: 1.5;"><br />여기에 내용</p>
+                <p><br /></p>
+            <div style="cursor:pointer;background-color:#DDDDDD;text-align: center;padding-bottom: 10px;padding-top: 10px;" onClick="close_pop();">
+                <span class="pop_bt" style="font-size: 13pt;" >
+                     닫기
+                </span>
             </div>
-                <div class="con2Txt">
-                    <h2 class="con2Txt2">미래를 향한 움직임<br></h2>
-                    <h2 class="con2Txt1"><strong class="strong">IFT</strong> MAKER SPACE</h2>
-                    <h2 class="con2Txt3">새롭지 않은 것과 새로운 것이 결합하여 형성된 사회문화적 현상, 그 범위와 영향력이 제조업 전 영역, 전세계적으로 확대하고 있고, 누구나 스스로 일상에서 창작 운동을 수행 하게 하는 교육</h2>
-                    <a href="" class="con2More">MORE</a>
-                    
-                </div>
-
-            <div class="separator"></div>
-            <br><br>
-            
-            
-            <div class="label">
-                <label for="radio-front"><span class="laBtn laBtn1 on"></span></label>
-                <label for="radio-left"><span class="laBtn laBtn2"></span></label>
-                <label for="radio-right"><span class="laBtn laBtn3"></span></label>
-                <label for="radio-top"><span class="laBtn laBtn4"></span></label>
-                <label for="radio-bottom"><span class="laBtn laBtn5"></span></label>
-                <label for="radio-back"><span class="laBtn laBtn6"></span></label>
-            </div>
-        </div>
+      </div>
+ 
     </div>
-       
-       <footer id="ft">
-            <div class="ftIn">
-                <div class="cp">
-                    <div class="copyright">
-                        <address>주 소 : 대전광역시 유성구 대학로 31 한진오피스텔 1515호</address>
-                        <br>(주)IFT / 전 화  : 070.4185.7272​ / E-mail : rococup@naver.com
-                            <a class="ftBtnLink" href="">사업자정보확인</a>
-                            <br>
-                            <div class="copy">
-                                Copyright ⓒ IFT All Rights Reserved
-                                <br> 
-                            </div>
-                            <div class="ftSns">
-                                <ul>
-                                    <li><a href=""><img src="./images/facebook.png" alt=""></a></li>
-                                    <li><a href=""><img src="./images/blog.png" alt=""></a></li>
-                                    <li><a href=""><img src="./images/insta.png" alt=""></a></li>
-                                    <li><a href=""><img src="./images/kakao.png" alt=""></a></li>
-                                </ul>
-                            </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-   </div>
-   
-   <!-- 옆슬라이스(어사이드) 영역 -->
-    <input type="checkbox" id="collapCk1" class="ckItem">
-    <aside class="collapFrame"><label for="collapCk1" class="opener"></label>
-        <ul class="cnb">
-           <div class="closeBox">
-               <h2 class="closeBox1">로봇코딩컵 대회</h2>
-               <h2 class="closeBox2">원활한 서비스를 위해서 링크를 이동 하겠습니다.</h2>
-               <a href="" class="start" target="_blank">참가신청하러가기</a>
-           </div>
-            <li class="collapCol">
-                    <div class="collapTxtFrame">
-                        <h3 class="collapTit wTxt"><span class="tit">2019 로봇코딩컵(RobotCoding CUP) 대회</span></h3>
-                        <h2 class="collapTit2">참 가 신 청 서</h2>
-                    </div>
-                    
-                    <div class="cBox">
-                      <form action="mailto:justmoretz@naver.com?subject=참가신청서입니다." method="post" enctype="text/plain" URIEncoding="euc-kr" connectionTimeout="20000" port="8080" protocol="HTTP/1.1">
-                      이름 : <input type="text" class="name" name="이름" size="0" maxlength="12" placeholder="이름을 입력해 주세요." accept-charset="UTF-8" />
-                        생년월일 :
-                        <input type="text" name="Year" class="date date1" placeholder="년"/>
-                        <input type="text" name="mon"class="date date2" placeholder="월"/>
-                        <input type="text" name="date" class="date date3" placeholder="일"/>
-                        <br>
-                        학교 :
-                        <input type="text" name="school" class="school" placeholder="학교를 입력해 주세요.">
-                        학년 : 
-                        <input type="text" name="class" class="school2" placeholder="학년">
-                        <br>
-                        <br>
-                        성별 : 
-                        <input type="radio" value="MAN" name="sex" class="sex">남자
-                        <input type="radio" value="GIRL" name="sex" class="sex sexLast">여자
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전화번호 : 
-                        <input type="text" name="FirstPhone" class="num num1" placeholder="010"> -
-                        <input type="text" name="secondPhone" class="num num2" placeholder="0000"> -
-                        <input type="text" name="lastPhone" class="num num3" placeholder="0000">
-                        <br>
-                        주소 : 
-                        <input type="text" name="address" class="address2" placeholder="주소를 입력해 주세요.">
-                        <br>
-                         보호자 성명 : 
-                        <input type="text" name="ParentsName" class="name_" placeholder="이름을 입력해 주세요.">
-                        전화번호 : 
-                        <input type="text" name="ParentsFirstPhone" class="num_ num1_" placeholder="010"> -
-                        <input type="text" name="ParentsSecondPhone" class="num_ num2_" placeholder="0000"> -
-                        <input type="text" name="ParentsLastPhone" class="num_ num3_" placeholder="0000">
-                        <br><br>
-                           대회 종목
-                           <br>
-                            <a href="" class="sel__ sel__1">로봇 마스터스 챌린지</a>
-                            <a href="" class="sel__ sel__2">코딩 마스터스 챌린지</a>
-                            <a href="" class="sel__ sel__3">3D 프린팅 디자인 챌린지</a>
-                            <br>
-                            <select name="ROBOT" style="width: 100" class="sel1">
-                               <option value="NOT">NOT</option>
-                                <option value="R.M.B">R.M.B(Robot Mission Battle)</option>
-                                <option value="School">School Mission Creative</option>
-                                <option value="Robot Golfer">로봇골퍼(Robot Golfer)</option>
-                                <option value="Advance Robot Challenge">Advance Robot Challenge</option>
-                            </select>
-                            <select name="CODDING" style="width: 100" class="sel2">
-                               <option value="NOT">NOT</option>
-                                <option value="Mission Coding">미션 코딩 (Mission Coding)</option>
-                                <option value="Convergence Coding">융합 코딩(Convergence Coding)</option>
-                            </select>
-                            <select name="3D" style="width: 100" class="sel3">
-                               <option value="NOT">NOT</option>
-                                <option value="Humanoid Extreme Sports">휴머노이드 익스트림스포츠</option>
-                                <option value="Advance Maker Challenge">Advance Maker Challenge</option>
-                                <option value="Extreme Line Tracer">익스트림 라인트레이서</option>
-                                <option value="Maker Creation">Maker Creation</option>
-                            </select>
-                            
-                            
-                            <input type="text" name="ROBOT KIT" class="name na1" placeholder="참여 로봇 종류를 적어주세요.">
-                            <input type="text" name="PROGRAM" class="name na2" placeholder="사용하는 프로그램을 적어주세요.">
-                            <br><br>
-                            <strong style="font-size: 0.4vmax; font-weight: 50;">한국로봇교육연합회는「개인정보보호법」에 의거하여, 아래와 같은 내용으로 개인정보를 수집 및 이용하고 있습니다.<br>대회 참가신청자께서는 아래 내용을 자세히 읽어 보시고, 모든 내용을 이해하신 후에 동의 여부를 결정해 주시기 바랍니다.<br>필수동의 : 개인정보 수집․이용 동의</strong>
-                            <img class="Cimg" src="./images/cImg.png" alt="dd">
-                            <br><br>
-                            위와 같이 개인정보를 수집․이용하는데 동의하십니까?&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input name="agree" type="checkbox">동의
-                        
-                            <input type="submit" value="신청서 신청하기" class="lic"/> 
-                            </form>
-                    </div>
-                </li>
-            <label for="collapCk1" class="closeBtn1"></label>
-            <h3 class="collapName wTxt">대 회 &nbsp;&nbsp;참 가&nbsp;&nbsp; 신 청 하 기</h3>
-        </ul>
-    </aside>
-    
+        <!--End Modal-->
+
+<script type="text/javascript">
+      
+        jQuery(document).ready(function() {
+                $('#myModal').show();
+        });
+        //팝업 Close 기능
+        function close_pop(flag) {
+             $('#myModal').hide();
+        };
+        
+    </script>
+
 </body>
 </html>
