@@ -1,0 +1,164 @@
+@charset "utf-8";
+
+#ft {
+            width: 100%;
+            height: auto;
+            background-color: #282e3c;
+            clear: both;
+        }
+        .ftIn {
+            width: 80%;
+            height: auto;
+            margin: 0 auto;
+        }
+        .ftSns {
+            width: 20%;
+            height: auto;
+            padding-top: 1.5%;
+            box-sizing: border-box;
+        }
+        .ftSns ul {
+            width: 70%;
+            height: auto;
+        }
+        .ftSns ul li {
+            float: left;
+            width: 20%;
+            height: auto;
+            margin: 2.5%;
+        }
+        .ftSns ul li a {
+            display: block;
+            width: 60%;
+            height: auto;
+        }
+        .ftSns ul li a img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .ftLeft {
+            width: 40%;
+            height: auto;
+            display: block;
+            padding-top:5%;
+        }
+        .ftLogo {
+            display: inline-block;
+            width: 30%;
+            height: auto;
+        }
+        .ftLogo img {
+            display: block;
+            width: 90%;
+            height: auto;
+        }
+        .ftBtn {
+            display: inline-block;
+            font-size: 0.6vmax;
+            font-weight: bold;
+            color: #e52159;
+            font-family: 'Gothic A1', sans-serif;
+        }
+        .address {
+            font-size: 0.7vmax;
+            color: #fff;
+            padding-top: 5%;
+            font-family: 'Gothic A1', sans-serif;
+        }
+        .call {
+            font-size: 0.7vmax;
+            color: #fff;
+            padding-top: 5%;
+            font-family: 'Gothic A1', sans-serif;
+        }
+        .email {
+            font-size: 0.7vmax;
+            color: #fff;
+            font-family: 'Gothic A1', sans-serif;
+        }
+        .ftRight {
+            float: right;
+            width: 20%;
+            height: auto;
+            position: relative;
+        }
+        .ftRight a.ftSIte {
+            display: inline-block;
+            border: 2px solid #fff;
+            color: #fff;
+            padding: 5%;
+            width: 50%;
+            height: auto;
+            box-sizing: border-box;
+            font-size: 0.6vmax;
+            float: left;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+        .ftBottom {
+            width: 100%;
+            height: auto;
+            clear: both;
+            background-color: #182e6c;
+        }
+        .ftBottom:after {
+            content: " ";
+            display: block;
+            clear: both;
+        }
+        .copyright {
+            color: #fff;
+            font-weight: bold;
+            font-size: 1vmax;
+            padding-top: 1%;
+            padding-bottom: 1%;
+            display: inline-block;
+        }
+        .ftMenu {
+            width: 35%;
+            height: auto;
+            float: right;
+        }
+        .ftMenu li {
+            float: left;
+            width: 20%;
+            height: auto;
+            margin: 2.5%;
+        }
+        .ftMenu li a {
+            display: block;
+            text-align: right;
+            font-size: 0.3vmax;
+            color: #fff;
+            font-weight: bold;
+            padding-top: 6.5%;
+        }
+        .faSite {
+            position: absolute;
+            bottom: 100%;
+            display: none;
+        }
+        .faSite li {
+            float: none;
+            display: inline-block;
+            color: #fff;
+            padding: 5%;
+            width: 50%;
+            height: auto;
+            box-sizing: border-box;
+            font-size: 0.6vmax;
+            text-align: center;
+            background-color: #fff;
+        }
+        .faSite li a {
+            display: block;
+            color: #3f3f3f;
+            text-align: center;
+            font-weight: bold;
+        }
+        .ftSIte.familly.on {
+            color: #3f3f3f;
+            background-color: #fff;
+        }

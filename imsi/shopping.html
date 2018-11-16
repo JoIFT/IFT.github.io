@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=no, target-densitydpi=medium-dpi">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="keywords" content="IFT, 기술, 교육, 무한, 메이커스페이스, 가온누리, 퍼블릭에듀">
+    <meta name="Description" content="Global Education Company - EduTech">
+    <!--[if IE]>
+    <<script src="http://html5shiv.googlecode.com/svn/truk/html5.js>
+    </script>
+    <![endif]-->
+
+    <!-- Firefox, opera (Chrome and safari say thanks but no thanks) -->
+
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <title>:: IFT ::</title>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> 
+
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    
+    <!-- 폰트링크 -->
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amethysta" rel="stylesheet">
+    
+    <!-- 기본 -->
+    <link rel="stylesheet" href="basic.css">
+    
+    <!-- 헤더 -->
+    <link rel="stylesheet" href="header.css">
+
+    <!-- aside -->
+    <link rel="stylesheet" href="aside.css">
+    
+    <!-- 슬레 -->
+    <style>
+        .slider { 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            height: 100vh;
+            overflow: hidden;
+            cursor: pointer;
+          }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+          .slide:nth-child(1) .panel > * {
+            background: #636fee;
+            color: #7594f0;
+          }
+          .slide:nth-child(2) .panel > * {
+            background: #a8cb86;
+            color: #bdd194;
+          }
+          .slide:nth-child(3) .panel > * {
+            background: #63afee;
+            color: #75cdf0;
+          }
+          .slide:nth-child(4) .panel > * {
+            background: #d24b62;
+            color: #d65c5c;
+          }
+          .slide .center {
+            opacity: 0;
+            transition: opacity linear 300ms;
+          }
+          .slide .panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+          .slide .top, .slide .bottom {
+            content: attr(data-back);
+            position: absolute;
+            font-size: 50vh;
+            font-weight: 800;
+            height: 50vh;
+            width: 100vw;
+            text-align: center;
+            z-index: 1;
+            overflow: hidden;
+            box-sizing: border-box;
+            transition: -webkit-transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865);
+            transition: transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865);
+            transition: transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865), -webkit-transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865);
+          }
+          .slide .top:after, .slide .bottom:after {
+            position: relative;
+            display: inline-block;
+            transition: -webkit-transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865);
+            transition: transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865);
+            transition: transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865), -webkit-transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865);
+            content: attr(data-back);
+            font-family: "BenchNine", sans-serif;
+          }
+          .slide .top {
+            line-height: 100vh;
+            -webkit-transform: translatey(-50vh);
+                    transform: translatey(-50vh);
+          }
+          .slide .top:after {
+            -webkit-transform: translatey(50vh);
+                    transform: translatey(50vh);
+          }
+          .slide .bottom {
+            bottom: 0;
+            line-height: 0vh;
+            -webkit-transform: translatey(50vh);
+                    transform: translatey(50vh);
+          }
+          .slide .bottom:after {
+            -webkit-transform: translatey(-50vh);
+                    transform: translatey(-50vh);
+          }
+          .slide.active .center {
+            opacity: 1;
+            transition: opacity linear 300ms;
+            transition-delay: 600ms;
+          }
+          .slide.active .top, .slide.active .bottom {
+            transition: none;
+            -webkit-transform: translatey(0);
+                    transform: translatey(0);
+            z-index: -1;
+          }
+          .slide.active .top:after, .slide.active .bottom:after {
+            transition: -webkit-transform cubic-bezier(0.23, 1, 0.32, 1) 1200ms;
+            transition: transform cubic-bezier(0.23, 1, 0.32, 1) 1200ms;
+            transition: transform cubic-bezier(0.23, 1, 0.32, 1) 1200ms, -webkit-transform cubic-bezier(0.23, 1, 0.32, 1) 1200ms;
+            -webkit-transform: translatey(0);
+                    transform: translatey(0);
+          }
+
+          .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate3d(-50%, -50%, 0);
+                    transform: translate3d(-50%, -50%, 0);
+            z-index: 2;
+            text-align: center;
+          }
+          .center h1 {
+            font-size: 5vh;
+            line-height: 1;
+            font-family: "BenchNine", sans-serif;
+              color: #fff;
+          }
+    </style>
+    
+    <!-- 푸터 -->
+    <link rel="stylesheet" href="footer.css">
+
+    <!-- 태블릿 스타일 -->
+    <link rel="stylesheet" href="tablelet.css">
+    
+    <!-- 모바일 스타일 -->
+    <link rel="stylesheet" href="mobile.css">
+    
+    <!-- 미디어 쿼리 -->
+    <link rel="stylesheet" href="query.css">
+    
+    <style>
+        .main {
+            background-image: url("./images/shop/shopBg.png");
+            background-size: 100% 100%;
+            background-attachment: fixed;
+        }
+        .product {
+            width: 100%;
+        }
+        .product .col {
+            float: left;
+            width: 90%;
+            margin: 5%;
+            position: relative;
+            overflow: hidden;
+            background-color: #fff;
+            cursor: pointer;
+            box-shadow: 7px 5px 16px #3f3f3f;  
+            border-radius: 2vw;
+        } 
+        .c2Line {
+            display: block;
+            position: absolute;
+            box-sizing: border-box;
+            transition: 0.5s;
+        }
+        .c2Line.l1 {
+            width: 0%;
+            height: auto;
+            border-bottom: 2px solid #c82050;
+            top: 0;
+            left: 0;
+        }
+        .c2Line.l2 {
+            width: auto;
+            height: 0%;
+            border-right: 2px solid #c82050;
+            top: 0;
+            right: 0;
+        }
+        .c2Line.l3 {
+            width: 0%;
+            height: auto;
+            border-bottom: 2px solid #c82050;
+            bottom: 0;
+            right: 0;
+        }
+        .c2Line.l4 {
+            width: auto;
+            height: 0%;
+            border-left: 2px solid #c82050;
+            bottom: 0;
+            left: 0;
+        }
+        .con2IHover, .con2IHover2, .con2IHover3, .con2IHover4 {
+            width: 100%;
+            height: 20%;
+            box-sizing: border-box;
+            clear: both;
+            margin: 0;
+            opacity: 0;
+            transition: 0.5s;
+        }
+        .con2IHover.on, .con2IHover2.on, .con2IHover3.on, .con2IHover4.on {
+            opacity: 1;
+        }
+        .product .col a {
+            display: block;
+            text-align: center;
+        }
+        .product .col a img {
+            display: block;
+            transition: 0.5s;
+            transform: rotateY(0deg);
+            margin: 0 auto; 
+            width: 100%;
+            height: auto;
+        } 
+        .proTit {
+            line-height: 1.8;
+            color: #333;
+        }    
+        .proCom {
+            padding: 15px;
+            padding-bottom: 40px;
+        }
+        .proCom span {
+            display: block;
+            font-size: 14px;
+        }
+        .proCom .price {
+            padding: 10px;
+            color: #fff;
+            background: rgba(33,33,33,0.7); 
+            border-radius: 25px; 
+             position: absolute;
+            top: 20px;
+            left: 45px;
+            z-index: 10;
+            display: none;
+        }
+        .price:before {
+            content: "가격 : "
+        }
+        .num {
+            color: #666;
+        }
+        .num:before {
+            content: "남은 수량 : ";
+        }
+        .com {
+            color: #333;
+            padding: 20px;
+        }
+        .shopLogo {
+            display: block;
+            width: 20%;
+            height: auto;
+            margin: 5% auto;
+            
+        }
+    </style>
+    
+    <style>
+        .particle-count {
+            display: block;
+            text-align: center;
+            margin: 25px 0;
+        }
+        .particles > .particle {
+            border-radius: 100%;
+            background: transparent;
+            position: absolute;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        .particles > .particle.smaller {
+            width: 5px;
+            height: 5px;
+        }
+        .particles > .particle.small {
+            width: 10px;
+            height: 10px;
+        }
+        .particles > .particle.normal {
+            width: 15px;
+            height: 15px;
+        }
+        .particles > .particle.big {
+            width: 20px;
+            height: 20px;
+        }
+        .particles > .particle.bigger {
+            width: 25px;
+            height: 25px;
+        }
+        .conClick1 {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            display: none;
+            background-color: rgba(255, 255, 255, 0.9);
+            top: 0;
+            left: 0;
+            z-index: 9999;
+        }
+        .iframe {
+            display: inline-block;
+            width: 40%;
+            height: 40%;
+            margin: 10%;
+        }
+        .buy {
+            display: block;
+            text-align: center;
+            padding: 2.5%;
+            background-color: #3f3f3f;
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 2vmax;
+            width: 30%;
+            height: auto;
+            margin: -5% auto;
+        }
+        .clickClose {
+            display: block;
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            color: #3f3f3f;
+            font-size: 4vmax;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .clickT {
+            float: right;
+            width: 40%;
+            height: auto;
+            margin-top: 10%;
+        }
+        .clickTxt {
+            display: block;
+            clear: both;
+            text-align: left;
+            font-size: 1.2vmax;
+            margin: 2.5%;
+            font-weight: bold;
+        }
+    </style>
+    
+    <style>
+        @media screen and (min-width: 768px) and (max-width: 959px){
+        /* 태블릿 pc */
+        .product .col {
+            width: 40%;
+            }
+        .pageTit {
+            font-size: 2em;
+            }
+    }
+    @media screen and (min-width: 960px) {
+        /* 데스크탑 pc */
+        .desk {
+            display: block;
+        }
+        .product .col {
+            width: 23.3333%;
+        }
+        .pageTit {
+            font-size: 2.4em;
+        }
+    }
+    </style>
+    
+    <script>
+        //한 페이지씩 스크롤
+        $(document).ready(function () {
+        	var pg = parseInt($(window).height());
+			$(window).on('mousewheel', function(e){
+				if(e.originalEvent.wheelDelta < 0) {
+					$('html, body').not(":animated").animate({
+                        scrollTop : '+='+'200%'},300);
+				} else {
+					$('html, body').not(":animated").animate({
+                        scrollTop : '-='+'200%'},300);
+				}
+				return false;
+			});
+		});
+    </script> <!-- 한페이지씩 스크롤 -->
+
+    <script>
+            $(document).on('click',nextSlide);
+
+            function nextSlide(){
+              console.log($('.active + .slide').length);
+              if ($('.active + .slide').length > 0){
+                $('.active + .slide').addClass('active');
+                $($('.active')[0]).removeClass('active');
+              } else{
+                $('.active').removeClass('active');
+                $('.slide:nth-child(1)').addClass('active');
+              }
+            }
+        </script> <!-- 어사이드 -->
+        
+    <script>
+        $(document).ready(function(){
+            var wd = parseInt($(".vs li").width());
+            
+            $("#vs .vsBox li .vs1Tit1").delay(1500).fadeIn(500);
+                    $(".vs1Tit1_1").delay(500).fadeIn(500);
+                    $(".vs1TitImg1").delay(1900).fadeIn(500, function(){
+                        $(this).not(":animated").animate({"top": "60%"}, 500, function(){
+                            $(this).delay(5600).fadeOut(500);
+                        });
+                    });
+            $(".vs1TitImg2").delay(1900).fadeIn(500, function(){
+                        $(this).not(":animated").animate({"right": "20%"}, 500, function(){
+                            $(this).delay(5600).fadeOut(500);
+                        });
+                    });
+
+
+                    $("#vs .vsBox li .vs1Tit1").delay(6500).fadeOut(500);
+                    $(".vs1Tit1_1").delay(7500).fadeOut(500);
+                    $(".vs1TitImg1").css("top", "90%");
+                    $(".vs1TitImg2").css("right", "-20%");
+            
+                $(".vsBtnIcon.on span.on").delay(700).not(":animated").animate({"width": "100%"}, 8000, function(){
+                        $(".vsBtnIcon.on span").css("width", "0px");
+                    });
+            
+            $(".vsBtnIcon").removeAttr("href");
+                function rAni(){
+                    $("#vs .vsBox").not(":animated").animate({"margin-left" : "-100%"}, 2000, function(){ 
+                        $("#vs .vsBox li .vs1Tit1").delay(1500).fadeIn(500);
+                        $(".vs1Tit1_1").delay(500).fadeIn(500);
+                        $(".vs1TitImg1").delay(1900).fadeIn(500, function(){
+                            $(this).not(":animated").animate({"top": "60%"}, 500, function(){
+                                $(this).delay(3600).fadeOut(500);
+                            });
+                        });
+                        $(".vs1TitImg2").delay(1900).fadeIn(500, function(){
+                            $(this).not(":animated").animate({"right": "20%"}, 500, function(){
+                                $(this).delay(3600).fadeOut(500);
+                            });
+                        });
+
+                        $("#vs .vsBox li").eq(0).appendTo($("#vs .vsBox"));
+                        $("#vs .vsBox").css("margin-left", "0px");
+                        $("#vs .vsBox li .vs1Tit1").delay(4500).fadeOut(500);
+                        $(".vs1Tit1_1").delay(5500).fadeOut(500);
+                        $(".vs1TitImg1").css("top", "90%");
+                        $(".vs1TitImg2").css("right", "-20%");
+                        
+                        $(".vsBtnIcon.on span.on").delay(700).not(":animated").animate({"width": "100%"}, 5500, function(){
+                        $(".vsBtnIcon.on span").css("width", "0px");
+                    });
+
+                    });
+                };
+            
+            var intv = setInterval(function(){
+                rAni();
+            }, 8500);
+            
+            $(".vsBtnIcon1").click(function(){
+                $(this).addClass("on");
+                $(this).find(".bar1").addClass("on");
+                $(".bar2, .bar3").removeClass("on");
+                $(this).siblings().removeClass("on");
+                
+                clearInterval();
+                $("#vs .vsBox").not(":animated").animate({"margin-left" : "-100%"}, 2000, function(){ 
+                        $("#vs .vsBox li .vs1Tit1").delay(1500).fadeIn(500);
+                        $(".vs1Tit1_1").delay(500).fadeIn(500);
+                        $(".vs1TitImg1").delay(1900).fadeIn(500, function(){
+                            $(this).not(":animated").animate({"top": "60%"}, 500, function(){
+                                $(this).delay(3600).fadeOut(500);
+                            });
+                        });
+                    $(".vs1TitImg2").delay(1900).fadeIn(500, function(){
+                            $(this).not(":animated").animate({"right": "20%"}, 500, function(){
+                                $(this).delay(3600).fadeOut(500);
+                            });
+                        });
+
+                        $("#vs .vsBox li").eq(0).appendTo($("#vs .vsBox"));
+                        $("#vs .vsBox").css("margin-left", "0px");
+                        $("#vs .vsBox li .vs1Tit1").delay(6000).fadeOut(500);
+                        $(".vs1Tit1_1").delay(5500).fadeOut(500);
+                        $(".vs1TitImg1").css("top", "90%");
+                        $(".vs1TitImg2").css("right", "-20%");
+                    
+                        $(".vsBtnIcon.on span.on").delay(700).not(":animated").animate({"width": "100%"}, 5500, function(){
+                        $(".vsBtnIcon.on span").css("width", "0px");
+                    });
+                });
+            });
+        });
+    </script> <!-- 비쥬얼 배너 슬라이드 -->
+    
+    <script>
+        $(document).ready(function(){
+            var a=0;
+            var intv = setInterval(function(){
+                func(a);
+                if(a<5) { a=a+1; } else { a=0; }
+            }, 1200);
+            function func(b){
+                $(".con1In input[type=radio]").prop("checked", "false");
+                $(".con1In input[type=radio]").eq(b).prop("checked", "true");
+            }
+                $(".label .laBtn").click(function(){
+                    clearInterval(intv);
+                });
+                $(".label label").click(function(){
+                    $(this).find(".laBtn").addClass("on");
+                    $(this).find(".laBtn").parent().siblings().find(".laBtn").removeClass("on");
+                });
+            });
+    </script> <!-- 3d형 큐브 -->
+
+    <script>
+        $(document).ready(function(){
+            var tran = 0;
+        $('.closeBtn1').click(function() {
+          $(this).toggleClass("on");
+        });
+    });
+    </script> <!-- 어사이드 닫기 -->
+    
+    <script>
+        $(document).ready(function(){
+            $(".product .col").hover(function(){
+                $(".line1").fadeIn(500);
+                $(this).find(".c2Line.l1").css("width", "100%");
+                $(this).find(".c2Line.l2").css("height", "100%");
+                $(this).find(".c2Line.l3").css("width", "100%");
+                $(this).find(".c2Line.l4").css("height", "100%");
+            });
+            $(".product .col").mouseleave(function(){
+                $(this).find(".c2Line.l1").css("width", "0%");
+                $(this).find(".c2Line.l2").css("height", "0%");
+                $(this).find(".c2Line.l3").css("width", "0%");
+                $(this).find(".c2Line.l4").css("height", "0%");
+            });
+        });
+    </script> <!-- con2 hover -->
+    
+    <script>
+        $(document).ready(function(){
+            $(".ftRight a.ftSIte.familly").removeAttr("href");
+            $(".ftRight a.ftSIte.familly").click(function(){
+                $(this).toggleClass("on");
+                $(".faSite").slideToggle(500);
+            });
+        });
+    </script> <!-- 푸터 familly site -->
+    
+    <script>
+        $(document).ready(function(){
+            $(".back").hover(function(){
+                $(".backLine").fadeIn(500);
+                $(".backLine.bl1").css("width", "100%");
+                $(".backLine.bl2").css("height", "100%");
+                $(".backLine.bl3").css("width", "100%");
+                $(".backLine.bl4").css("height", "100%");
+                
+            });
+            
+            $(".back").mouseleave(function(){
+                $(".backLine.bl1").css("width", "0%");
+                $(".backLine.bl2").css("height", "0%");
+                $(".backLine.bl3").css("width", "0%");
+                $(".backLine.bl4").css("height", "0%");
+            });
+            
+            $(".back").removeAttr("href");
+            $(".back").click(function(){
+                $(".popBox").addClass("off");
+            });
+        });
+    </script> <!-- 팝업 스크립트 -->
+    
+    <script>
+        $(document).ready(function(){
+            $(".product .col a").removeAttr("href");
+            $(".product .col").click(function(){
+                $(".conClick1").slideDown(500);
+            });
+            $(".clickClose").click(function(){
+                $(".conClick1").slideUp(500);
+            });
+        });
+    </script>
+    
+    <!-- 태블릿 스크립트 -->
+    <script>
+        $(document).ready(function(){
+            $(".MmenuBtn").click(function(){
+                $(".MmenuBtn span").toggleClass("on");
+                $(".MmenuBtn").toggleClass("on");
+                $(".MmenuBox").toggleClass("on");
+            });
+        });
+    </script>
+    
+    <script>
+            $(document).ready(function(){
+              $(".hamburger").click(function(){
+                $(this).toggleClass("is-active");
+                  $(".Mmenu").toggleClass("on");
+              });
+            });
+        </script> <!-- 메뉴 버튼 -->
+        
+</head>
+<body>
+   <div class="main" id="desktop">
+      
+       <header id="hd">
+           <div class="hdIn">
+               <ul class="snsBox">
+                   <li><a href=""><img src="./images/skype.png" alt="전호"></a></li>
+                   <li><a href=""><img src="./images/twitter.png" alt="트위터"></a></li>
+                   <li><a href=""><img src="./images/insta.png" alt="인스타그램"></a></li>
+                   <li><a href=""><img src="./images/google.png" alt="구글"></a></li>
+               </ul>
+               
+               <ul class="sign">
+                   <li><a href=""><img src="./images/kart.png" alt="카트"></a></li>
+                   <li><a href="">로그인</a></li>
+                   <li><a href="">회원가입</a></li>
+               </ul>
+               
+               <a href="index.html" class="logo">
+                   <img src="./images/logo.png" alt="로고">
+                </a>
+                
+                <ul class="menu">
+                    <li class="menuLst">
+                        <a href="">INTRO</a>
+
+                    </li>
+                    <li class="menuLst">
+                        <a href="">MAKER SPACE</a>
+
+                    </li>
+                    <li class="menuLst">
+                        <a href="">PUBLIC EDU</a>
+                    </li>
+                    <li class="menuLst">
+                        <a href="">R &amp; D</a>
+
+                    </li>
+                    <li class="menuLst">
+                        <a href="">FRANCHISE</a>
+  
+                    </li>
+                    <li class="menuLst">
+                        <a href="">SOSIAL CONTRIBUTION</a>
+
+                    </li>
+                    <li class="menuLst">
+                        <a href="" style="color: #ee094a">SHOOPING MALL</a>
+                    </li>
+                </ul>
+           </div>
+       </header>
+       
+       <div class="Mhd">
+           <div class="MhdIn">
+               <div class="three col">
+                    <div class="hamburger" id="hamburger-9">
+                        <span class="line"></span>
+                        <span class="line"></span>
+                        <span class="line"></span>
+                    </div>
+                </div>
+           </div>
+           <div class="Mmenu">
+                    <ul class="MmenuLst">
+                        <li class="MmenuLst">
+                            <a href="">INTRO
+                            <h2 class="MmenuTxt">IFT를 소개합니다.</h2></a>
+
+                        </li>
+                        <li class="MmenuLst">
+                            <a href="">MAKER SPACE
+                            <h2 class="MmenuTxt">IFT의 메이커스페이스</h2></a>
+
+                        </li>
+                        <li class="MmenuLst">
+                            <a href="">PUBLIC EDU
+                            <h2 class="MmenuTxt">IFT 공공 교육</h2></a>
+                        </li>
+                        <li class="MmenuLst">
+                            <a href="">R &amp; D
+                            <h2 class="MmenuTxt">IFT R &amp; D 창출</h2></a>
+
+                        </li>
+                        <li class="MmenuLst">
+                            <a href="">FRANCHISE
+                            <h2 class="MmenuTxt">IFT 프렌차이즈 가온누리</h2></a>
+
+                        </li>
+                        <li class="MmenuLst">
+                            <a href="">SOSIAL CONTRIBUTION
+                            <h2 class="MmenuTxt">도움으로써 성장합니다.</h2></a>
+
+                        </li>
+                        <li class="MmenuLst">
+                            <a href="">SHOOPING MALL
+                            <h2 class="MmenuTxt">UBITECH 상품 쇼핑</h2></a>
+                        </li>
+                    </ul>
+                    
+                    <div class="MmenuSns">
+                        <h2 class="Maddress">주소 : 대전광역시 유성구 대학로 31 한진오피스텔 1515호</h2>
+                        <h2 class="Mcall">전화 : 070.4185.7272</h2>
+                        <a href="mailto:rococup.naver.com" class="Memail">이메일 : rococup@naver.com</a>
+                    </div>
+                    
+                    <div class="MmenuLogin">
+                        <a href="" class="MSign Mlogin">로그인</a>
+                        <a href="" class="MSign Mjoin">회원가입</a>
+                        <ul>
+                            <li class="Msns"><a href=""><img src="./images/Mskype.png" alt="전호"></a></li>
+                           <li class="Msns"><a href=""><img src="./images/Mtwitter.png" alt="트위터"></a></li>
+                           <li class="Msns"><a href=""><img src="./images/Minsta.png" alt="인스타그램"></a></li>
+                           <li class="Msns"><a href=""><img src="./images/Mgoogle.png" alt="구글"></a></li>
+                        </ul>
+                    </div>
+                </div>
+       </div>
+       
+       <div class="shop">
+         
+         <div class="fix">
+             <div class="fixMenu">
+
+             </div>
+         </div>
+          <div class='particles'></div>
+           <section class="content">
+            <img src="./images/shop/shopImg.png" alt="샵 로고" class="shopLogo">
+            <ul class="product">
+                <li class="col"><a href="">
+                        <img src="./images/shop/sam1Img.png" alt="">
+                        <h3 class="proTit">YanShee</h3>
+                        <p class="proCom">
+                            <span class="price">120,000</span>
+                            <span class="num">15</span>
+                            <span class="com">UBTECH에서 고등학생 및  대학생 위주로 한  ...</span>
+                        </p>
+                    </a>
+                    <span class="c2Line l1"></span>
+                    <span class="c2Line l2"></span>
+                    <span class="c2Line l3"></span>
+                    <span class="c2Line l4"></span>
+                    </li>
+                <li class="col"><a href="">
+                        <img src="./images/shop/sam1Img.png" alt="">
+                        <h3 class="proTit">YanShee</h3>
+                            <p class="proCom">
+                                <span class="num">15</span>
+                                <span class="com">UBTECH에서 고등학생 및  대학생 위주로 한 ...</span>
+                            </p>
+                        </a>
+                    <span class="c2Line l1"></span>
+                    <span class="c2Line l2"></span>
+                    <span class="c2Line l3"></span>
+                    <span class="c2Line l4"></span>
+                        </li>
+                    <li class="col"><a href="">
+                            <img src="./images/shop/sam1Img.png" alt="">
+                            <h3 class="proTit">YanShee</h3>
+                            <p class="proCom">
+                                <span class="price">120,000</span>
+                                <span class="num">15</span>
+                                <span class="com">기업의 주력상품 최고의 품질, 최상의 서비스, 최저가로 출시되었습니다.</span>
+                            </p>
+                        </a>
+                        <span class="c2Line l1"></span>
+                    <span class="c2Line l2"></span>
+                    <span class="c2Line l3"></span>
+                    <span class="c2Line l4"></span>
+                        </li>
+                    <li class="col"><a href="">
+                            <img src="http://placehold.it/300x450" alt="">
+                            <h3 class="proTit">YanShee</h3>
+                            <p class="proCom">
+                                <span class="price">120,000</span>
+                                <span class="num">15</span>
+                                <span class="com">기업의 주력상품으로 최고의 품질, 최상의 서비스, 최저가로 출시되었습니다.</span>
+                            </p>
+                        </a>
+                        <span class="c2Line l1"></span>
+                    <span class="c2Line l2"></span>
+                    <span class="c2Line l3"></span>
+                    <span class="c2Line l4"></span>
+                        </li>
+                    <li class="col"><a href="">
+                            <img src="http://placehold.it/300x450" alt="">
+                            <h3 class="proTit">YanShee</h3>
+                            <p class="proCom">
+                                <span class="price">120,000</span>
+                                <span class="num">15</span>
+                                <span class="com">기업의 주력상품으로 최고의 품질, 최상의 서비스, 최저가로 출시되었습니다.</span>
+                            </p>
+                        </a>
+                            <span class="c2Line l1"></span>
+                    <span class="c2Line l2"></span>
+                    <span class="c2Line l3"></span>
+                    <span class="c2Line l4"></span>
+                        </li>
+                    <li class="col"><a href="">
+                            <img src="http://placehold.it/300x450" alt="">
+                            <h3 class="proTit">YanShee</h3>
+                            <p class="proCom">
+                                <span class="price">120,000</span>
+                                <span class="num">15</span>
+                                <span class="com">기업의 주력상품으로 최고의 품질, 최상의 서비스, 최저가로 출시되었습니다.</span>
+                            </p>
+                        </a>
+                            <span class="c2Line l1"></span>
+                    <span class="c2Line l2"></span>
+                    <span class="c2Line l3"></span>
+                    <span class="c2Line l4"></span>
+                        </li>
+                    <li class="col"><a href="">
+                            <img src="http://placehold.it/300x450" alt="">
+                            <h3 class="proTit">YanShee</h3>
+                            <p class="proCom">
+                                <span class="price">120,000</span>
+                                <span class="num">15</span>
+                                <span class="com">기업의 주력상품으로 최고의 품질, 최상의 서비스, 최저가로 출시되었습니다.</span>
+                            </p>
+                        </a>
+                            <span class="c2Line l1"></span>
+                    <span class="c2Line l2"></span>
+                    <span class="c2Line l3"></span>
+                    <span class="c2Line l4"></span>
+                        </li>
+                    <li class="col"><a href="">
+                            <img src="http://placehold.it/300x450" alt="">
+                            <h3 class="proTit">YanShee</h3>
+                            <p class="proCom">
+                                <span class="price">120,000</span>
+                                <span class="num">15</span>
+                                <span class="com">기업의 주력상품으로 최고의 품질, 최상의 서비스, 최저가로 출시되었습니다.</span>
+                            </p>
+                        </a>
+                            <span class="c2Line l1"></span>
+                    <span class="c2Line l2"></span>
+                    <span class="c2Line l3"></span>
+                    <span class="c2Line l4"></span>
+                        </li>
+                    <li class="col"><a href="">
+                            <img src="http://placehold.it/300x450" alt="">
+                            <h3 class="proTit">YanShee</h3>
+                            <p class="proCom">
+                                <span class="price">120,000</span>
+                                <span class="num">15</span>
+                                <span class="com">기업의 주력상품으로 최고의 품질, 최상의 서비스, 최저가로 출시되었습니다.</span>
+                            </p>
+                        </a>
+                        <span class="c2Line l1"></span>
+                    <span class="c2Line l2"></span>
+                    <span class="c2Line l3"></span>
+                    <span class="c2Line l4"></span>
+                        </li>
+                    <li class="col"><a href="">
+                            <img src="http://placehold.it/300x450" alt="">
+                            <h3 class="proTit">YanShee</h3>
+                            <p class="proCom">
+                                <span class="price">120,000</span>
+                                <span class="num">15</span>
+                                <span class="com">기업의 주력상품으로 최고의 품질, 최상의 서비스, 최저가로 출시되었습니다.</span>
+                            </p>
+                        </a>
+                        <span class="c2Line l1"></span>
+                    <span class="c2Line l2"></span>
+                    <span class="c2Line l3"></span>
+                    <span class="c2Line l4"></span>
+                        </li>
+                </ul>
+            </section>
+            
+            <div class="conClick1">
+                <iframe src="https://www.youtube.com/embed/iRGbugeOEsE?amp;autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="iframe"></iframe>
+                <div class="clickT">
+                    <span class="clickTxt">Raspberry Pi+STM32 오픈된 하드워어 구조</span>
+                    <span class="clickTxt">17개 서보모터 디자인</span>
+                    <span class="clickTxt">800만 화소의 내장 카메라</span>
+                    <span class="clickTxt">지로이 및 기타 통신 모듈 내장</span>
+                    <span class="clickTxt">다양한 오픈 센서</span>
+                    <span class="clickTxt">BLockly、Python、Java、C/C++ 지원</span>
+                    <img src="./images/shop/ubitechLogo.png" alt="유비테크">
+                </div>
+                
+                
+                <a href="" class="buy">구매하러가기</a>
+                
+                <span class="clickClose">X</span>
+            </div>
+       </div>
+       
+        <footer id="ft">
+            <div class="ftIn">
+                <div class="ftSns">
+                    <ul>
+                        <li><a href=""><img src="./images/kakao.png" alt="ftSns"></a></li>
+                        <li><a href=""><img src="./images/instagram.png" alt="ftSns"></a></li>
+                        <li><a href=""><img src="./images/facebook.png" alt="ftSns"></a></li>
+                        <li><a href=""><img src="./images/blog.png" alt="ftSns"></a></li>
+                    </ul>
+                </div>
+                
+                <div class="ftLeft">
+                    <a href="" class="ftLogo">
+                        <img src="./images/ftLogo.png" alt="footerLogo">
+                    </a>
+                    <a href="" class="ftBtn">사업자정보확인</a>
+                    <h2 class="address">주소 : 대전광역시 유성구 대학로 31 한진오피스텔 1515호</h2>
+                    <h2 class="call">전화 : 070.4185.7272</h2>
+                    <a href="mailto:rococup.naver.com" class="email">rococup@naver.com</a>
+                </div>
+                <div class="ftRight">
+                    <a href="" class="ftSIte familly">패밀리사이트 ▲</a>
+                    <ul class="faSite">
+                        <li><a href="">한국로봇교육연합회</a></li>
+                        <li><a href="">세종 가온누리</a></li>
+                        <li><a href="">대전 가온누리</a></li>
+                        <li><a href="">유비테크</a></li>
+                    </ul>
+                    <a href="" class="ftSIte ftFirst">자주찾는 메뉴 ▲</a>
+                    
+                </div>
+            </div>
+            <div class="ftBottom">
+                   <div class="ftIn">
+                        <h2 class="copyright">Copyright ⓒ IFT All Rights Reserved </h2>
+                        <a href="" class="toTop">
+                            <img src="" alt="">
+                        </a>
+
+                        <ul class="ftMenu">
+                            <li><a href="" style="color: #c82050;">개인정보처리방침</a></li>
+                            <li><a href="">사이트 이용약관</a></li>
+                            <li><a href="">오시는 길</a></li>
+                            <li><a href="">회사소개</a></li>
+                        </ul>
+                    </div>
+                </div>
+        </footer>
+        
+        <div class="Mft">
+            <div class="MftIn">
+                
+                <h2 class="address" style="color: #3f3f3f;">주소 : 대전광역시 유성구 대학로 31 한진오피스텔 1515호</h2>
+                    <h2 class="call" style="color: #3f3f3f;">전화 : 070.4185.7272</h2>
+                    <a href="mailto:rococup.naver.com" class="email" style="color: #3f3f3f; font-weight: bold;">rococup@naver.com</a>
+                    <h2 class="Mcopyright" st>Copyright ⓒ IFT All Rights Reserved</h2>
+            </div>
+        </div>
+   </div>
+   
+   <!-- 옆슬라이스(어사이드) 영역 -->
+    <input type="checkbox" id="collapCk1" class="ckItem">
+    <aside class="collapFrame"><label for="collapCk1" class="opener"></label>
+       <div class="slider">
+          <div class="slide active">
+            <div class="panel">
+              <div class="top"></div>
+              <div class="bottom"></div>
+            </div>
+            <div class="center">
+              <h1>미래를 향한 움직임을 실현하다.</h1>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="panel">
+              <div class="top"></div>
+              <div class="bottom"></div>
+            </div>
+            <div class="center">
+              <h1>성공적인 미래를 선도한다.</h1>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="panel">
+              <div class="top"></div>
+              <div class="bottom"></div>
+            </div>
+            <div class="center">
+              <h1>글로벌 아이덴티티의 혁신 IFT</h1>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="panel">
+              <div class="top"></div>
+              <div class="bottom"></div>
+            </div>
+            <div class="center">
+              <h1>성적이 아닌, 성장의 중요성</h1>
+            </div>
+          </div>
+    </div>
+        <div class="cnb">
+            <label for="collapCk1" class="closeBtn1"></label>
+            <h3 class="collapName wTxt">IFT Towards the future</h3>
+        </div>
+    </aside>
+    
+    
+    
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> 
+        <script type="text/javascript">
+        var d = document,
+          $d = $(d),
+          w = window,
+          $w = $(w),
+          wWidth = $w.width(),
+          wHeight = $w.height(),
+          credit = $('.credit > a'),
+          particles = $('.particles'),
+          particleCount = 0,
+          sizes = [
+            15, 20, 25, 35, 45
+          ],
+          colors = [
+            '#f44336', '#e91e63', '#9c27b0', '#673ab7', '#3f51b5',
+            '#2196f3', '#03a9f4', '#00bcd4', '#009688', '#4CAF50',
+            '#8BC34A', '#CDDC39', '#FFEB3B', '#FFC107', '#FF9800',
+            '#FF5722', '#795548', '#9E9E9E', '#607D8B', '#777777'
+          ],
+
+          mouseX = $w.width() / 2,
+          mouseY = $w.height() / 2;
+
+        function updateParticleCount() {
+          $('.particle-count > .number').text(particleCount);
+        };
+
+        $w
+          .on('resize', function() {
+            wWidth = $w.width();
+            wHeight = $w.height();
+          });
+
+        $d
+          .on('mousemove touchmove', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+            if (!!event.originalEvent.touches) {
+              mouseX = event.originalEvent.touches[0].clientX;
+              mouseY = event.originalEvent.touches[0].clientY;
+            }
+          })
+          .on('mousedown touchstart', function(event) {
+            if (event.target === credit.get(0)) {
+              return;
+            }
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+            if (!!event.originalEvent.touches) {
+              mouseX = event.originalEvent.touches[0].clientX;
+              mouseY = event.originalEvent.touches[0].clientY;
+            }
+            var timer = setInterval(function() {
+              $d
+                .one('mouseup mouseleave touchend touchcancel touchleave', function() {
+                  clearInterval(timer);
+                })
+              createParticle(event);
+            }, 1000 / 60)
+
+          });
+
+        function createParticle(event) {
+          var particle = $('<div class="particle"></div>'),
+            size = sizes[Math.floor(Math.random() * sizes.length)],
+            color = colors[Math.floor(Math.random() * colors.length)],
+            negative = size / 2,
+            speedHorz = Math.random() * 10,
+            speedUp = Math.random() * 25,
+            spinVal = 360 * Math.random(),
+            spinSpeed = ((36 * Math.random())) * (Math.random() <= .5 ? -1 : 1),
+            otime,
+            time = otime = (1 + (.5 * Math.random())) * 1000,
+            top = (mouseY - negative),
+            left = (mouseX - negative),
+            direction = Math.random() <= .5 ? -1 : 1,
+            life = 10;
+
+          particle
+            .css({
+              height: size + 'px',
+              width: size + 'px',
+              top: top + 'px',
+              left: left + 'px',
+              background: color,
+              transform: 'rotate(' + spinVal + 'deg)',
+              webkitTransform: 'rotate(' + spinVal + 'deg)'
+            })
+            .appendTo(particles);
+          particleCount++;
+          updateParticleCount();
+
+          var particleTimer = setInterval(function() {
+            time = time - life;
+            left = left - (speedHorz * direction);
+            top = top - speedUp;
+            speedUp = Math.min(size, speedUp - 1);
+            spinVal = spinVal + spinSpeed;
+
+            particle
+              .css({
+                height: size + 'px',
+                width: size + 'px',
+                top: top + 'px',
+                left: left + 'px',
+                opacity: ((time / otime) / 2) + .25,
+                transform: 'rotate(' + spinVal + 'deg)',
+                webkitTransform: 'rotate(' + spinVal + 'deg)'
+              });
+
+            if (time <= 0 || left <= -size || left >= wWidth + size || top >= wHeight + size) {
+              particle.remove();
+              particleCount--;
+              updateParticleCount();
+              clearInterval(particleTimer);
+            }
+          }, 1000 / 50);
+        }
+        </script>
+</body>
+</html>
