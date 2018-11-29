@@ -1,0 +1,66 @@
+@charset "utf-8";
+
+        .collapFrame {
+            position: fixed;
+            z-index: 999;
+            width: 100%;
+            height: 100%;
+            left: -100%;
+            top: 0;
+            transition: 0.7s;
+        }
+        .cnb {
+            z-index: 9999;
+            width: auto;
+            height: auto;
+            position: fixed;
+            top: 35%;
+            left: 0;
+            border-radius: 0px 1vmax 1vmax 0px;
+            background: #333;
+            padding: 1%;
+        }
+        #collapCk1:checked ~ .collapFrame {
+            left: 0;
+        }
+        #collapCk1:checked ~ .collapFrame .cnb {
+            right: auto;
+            left: 0;
+        }
+        .closeBtn1 {
+            background: url(../images/collbtn.png);
+            background-position: 0px 0px;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            top: 5%;
+            right: 35%;
+            width: 30%;
+            height: 7%;
+            display: block;
+            position: absolute;
+            font-size: 0;
+            text-indent: -999px;
+            cursor: pointer;
+            z-index: 100;
+            transition: 0.5s;
+        }
+        .closeBtn1:hover {
+            background: url(../images/collbtnhover.png);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            top: 5%;
+            right: 30%;
+            width: 30%;
+            height: 7%;
+        }
+        .closeBtn1.on {
+            transform: rotate(180deg);
+        }
+        .collapName {
+            writing-mode: tb-rl;
+            font-size: 1vmax;
+            font-weight: bold;
+            z-index: 100;
+            color: #fff;
+            padding-top: 100%;
+        }

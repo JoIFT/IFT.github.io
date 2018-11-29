@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=no, target-densitydpi=medium-dpi">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="keywords" content="IFT, 기술, 교육, 무한, 메이커스페이스, 가온누리, 퍼블릭에듀">
+    <meta name="Description" content="Global Education Company - EduTech">
+    <!--[if IE]>
+    <<script src="http://html5shiv.googlecode.com/svn/truk/html5.js>
+    </script>
+    <![endif]-->
+
+    <!-- Firefox, opera (Chrome and safari say thanks but no thanks) -->
+
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <title>:: IFT ::</title>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> 
+
+    <script src="https://code.jquery.com/jquery-latest.js"></script> 
+    <!-- 폰트링크 -->
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amethysta" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Allura" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cinzel" rel="stylesheet">
+    
+    <!-- 기본 -->
+    <link rel="stylesheet" href="css/basic.css">
+    
+    <!-- 헤더 -->
+    <link rel="stylesheet" href="css/header.css">
+    
+    <!-- aside -->
+    <link rel="stylesheet" href="css/aside.css">
+
+    <!-- 슬레 -->
+    <style>
+        .slider { 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            height: 100vh;
+            overflow: hidden;
+            cursor: pointer;
+          }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+          .slide:nth-child(1) .panel > * {
+            background: #636fee;
+            color: #7594f0;
+          }
+          .slide:nth-child(2) .panel > * {
+            background: #a8cb86;
+            color: #bdd194;
+          }
+          .slide:nth-child(3) .panel > * {
+            background: #63afee;
+            color: #75cdf0;
+          }
+          .slide:nth-child(4) .panel > * {
+            background: #d24b62;
+            color: #d65c5c;
+          }
+          .slide .center {
+            opacity: 0;
+            transition: opacity linear 300ms;
+          }
+          .slide .panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+          .slide .top, .slide .bottom {
+            content: attr(data-back);
+            position: absolute;
+            font-size: 50vh;
+            font-weight: 800;
+            height: 50vh;
+            width: 100vw;
+            text-align: center;
+            z-index: 1;
+            overflow: hidden;
+            box-sizing: border-box;
+            transition: -webkit-transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865);
+            transition: transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865);
+            transition: transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865), -webkit-transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865);
+          }
+          .slide .top:after, .slide .bottom:after {
+            position: relative;
+            display: inline-block;
+            transition: -webkit-transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865);
+            transition: transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865);
+            transition: transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865), -webkit-transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865);
+            content: attr(data-back);
+            font-family: "BenchNine", sans-serif;
+          }
+          .slide .top {
+            line-height: 100vh;
+            -webkit-transform: translatey(-50vh);
+                    transform: translatey(-50vh);
+          }
+          .slide .top:after {
+            -webkit-transform: translatey(50vh);
+                    transform: translatey(50vh);
+          }
+          .slide .bottom {
+            bottom: 0;
+            line-height: 0vh;
+            -webkit-transform: translatey(50vh);
+                    transform: translatey(50vh);
+          }
+          .slide .bottom:after {
+            -webkit-transform: translatey(-50vh);
+                    transform: translatey(-50vh);
+          }
+          .slide.active .center {
+            opacity: 1;
+            transition: opacity linear 300ms;
+            transition-delay: 600ms;
+          }
+          .slide.active .top, .slide.active .bottom {
+            transition: none;
+            -webkit-transform: translatey(0);
+                    transform: translatey(0);
+            z-index: -1;
+          }
+          .slide.active .top:after, .slide.active .bottom:after {
+            transition: -webkit-transform cubic-bezier(0.23, 1, 0.32, 1) 1200ms;
+            transition: transform cubic-bezier(0.23, 1, 0.32, 1) 1200ms;
+            transition: transform cubic-bezier(0.23, 1, 0.32, 1) 1200ms, -webkit-transform cubic-bezier(0.23, 1, 0.32, 1) 1200ms;
+            -webkit-transform: translatey(0);
+                    transform: translatey(0);
+          }
+
+          .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate3d(-50%, -50%, 0);
+                    transform: translate3d(-50%, -50%, 0);
+            z-index: 2;
+            text-align: center;
+          }
+          .center h1 {
+            font-size: 5vh;
+            line-height: 1;
+            font-family: "BenchNine", sans-serif;
+            color: #fff;
+          }
+    </style>
+    
+    <style>
+      a.totop {
+        position: fixed;
+        right: 10%;
+        bottom: 20%;
+        display: none;
+          width: 2%;
+          height: 2%;
+      }
+        a.totop img {
+            width: 100%;
+            height: auto;
+        }
+    </style> <!-- top -->
+    
+    <!-- 푸터 -->
+    <link rel="stylesheet" href="css/footer.css">
+    
+    <!-- 태블릿 스타일 -->
+    <link rel="stylesheet" href="css/tablelet.css">
+    
+    <!-- 모바일 스타일 -->
+    <link rel="stylesheet" href="css/mobile.css">
+    
+    <!-- 쿼리 스타일 -->
+    <link rel="stylesheet" href="css/query.css">
+    
+    
+    <script>
+        //한 페이지씩 스크롤
+        $(document).ready(function () {
+        	var pg = parseInt($(window).height());
+			$(window).on('mousewheel', function(e){
+				if(e.originalEvent.wheelDelta < 0) {
+					$('html, body').not(":animated").animate({
+                        scrollTop : '+='+'600%'},500);
+				} else {
+					$('html, body').not(":animated").animate({
+                        scrollTop : '-='+'600%'},500);
+				}
+				return false;
+			});
+		});
+    </script> <!-- 한페이지씩 스크롤 -->
+
+    <script>
+            $(document).on('click',nextSlide);
+
+            function nextSlide(){
+              console.log($('.active + .slide').length);
+              if ($('.active + .slide').length > 0){
+                $('.active + .slide').addClass('active');
+                $($('.active')[0]).removeClass('active');
+              } else{
+                $('.active').removeClass('active');
+                $('.slide:nth-child(1)').addClass('active');
+              }
+            }
+        </script>
+
+    <script>
+        $(document).ready(function(){
+            var tran = 0;
+        $('.closeBtn1').click(function() {
+          $(this).toggleClass("on");
+        });
+    });
+    </script>
+    
+    <script>
+        $(document).ready(function(){
+            $(".ftRight a.ftSIte.familly").removeAttr("href");
+            $(".ftRight a.ftSIte.familly").click(function(){
+                $(this).toggleClass("on");
+                $(".faSite").slideToggle(500);
+            });
+        });
+    </script>
+    
+    <script>
+        $(document).ready(function(){
+            $(".con2Box li.con2BoxLst a").removeAttr("href");
+            $(".con2Box li.con2BoxLst a").click(function(){
+                $(".popBox").removeClass("off");
+            });
+        });
+    </script> <!-- 임시 스크립트 -->
+    
+    <!-- 태블릿 스크립트 -->
+    <script>
+        $(document).ready(function(){
+            $(".MmenuBtn").click(function(){
+                $(".MmenuBtn span").toggleClass("on");
+                $(".MmenuBtn").toggleClass("on");
+                $(".MmenuBox").toggleClass("on");
+            });
+        });
+    </script>
+    
+    <script>
+            $(document).ready(function(){
+              $(".hamburger").click(function(){
+                $(this).toggleClass("is-active");
+                  $(".Mmenu").toggleClass("on");
+              });
+            });
+        </script>
+        
+    <script type="text/javascript">
+
+		$(document).ready(function(){
+
+			$(document).bind('keydown',function(e){
+
+				if ( e.keyCode == 123 /* F12 */) {
+
+					e.preventDefault();
+
+					e.returnValue = false;
+
+				}
+
+			});
+
+		});
+
+	</script>
+	
+	<script>
+      $( document ).ready( function() {
+        $( window ).scroll( function() {
+          if ( $( this ).scrollTop() > 200 ) {
+            $( '.totop' ).fadeIn();
+          } else {
+            $( '.totop' ).fadeOut();
+          }
+        } );
+        $( '.totop' ).click( function() {
+          $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+          return false;
+        } );
+      } );
+    </script> <!-- top -->
+	
+	<style>
+        #con1 {
+            width: 100%;
+            height: auto;
+        }
+        .con1In {
+            width: 80%;
+            height: auto;
+            margin: 0 auto;
+        }
+        .con1Tit {
+            text-align: center;
+            font-size: 3vmax;
+            color: #3f3f3f;
+            font-weight: bold;
+            padding: 5%;
+            opacity: 0;
+        }
+        .con1Btn {
+            width: 50%;
+            height: auto;
+            margin: 0 auto;
+            clear: both;
+            margin-bottom: 2%;
+            opacity: 0;
+        }
+        .con1Btn li {
+            float: left;
+            width: 50%;
+            height: auto;
+        }
+        .con1Btn li a {
+            display: block;
+            text-align: center;
+            font-size: 1vmax;
+            font-weight: bold;
+            font-family: 'Gothic A1', sans-serif;
+            color: #3f3f3f;
+            cursor: pointer;
+            z-index: 9999;
+        }
+        .con1Btn li a.on {
+            color: #ee094a;
+        }
+        .AllBox {
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
+        .All {
+            width: 200%;
+            height: auto;
+            position: relative;
+            transition: 0.5s;
+        }
+        .All li.AllLst {
+            width: 50%;
+            height: auto;
+            float: left;
+        }
+        .daejeon {
+            width: 100%;
+            height: auto;
+        }
+        .con1Img {
+            display: block;
+            width: 100%;
+            height: auto;
+            padding: 5% 0%;
+            transition: 0.5s;
+            opacity: 0;
+        }
+        .opa1, .opa2 {
+            opacity: 0;
+        }
+        .con1Box {
+            width: 100%;
+            height: auto;
+        }
+        .con1Box li.con1BoxL {
+            width: 95%;
+            height: auto;
+            float: left;
+            margin: 5% 2.5%;
+        }
+        .con1BoxL ul {
+            width: 100%;
+            height: auto;
+        }
+        .con1BoxL ul li {
+            float: left;
+            width: 47%;
+            height: auto;
+            margin: 1.5%;
+            position: relative;
+        }
+        .con1BoxL ul li img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .Boxline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            border-top: 2px solid #4b2358;
+        }
+        .BoxTit {
+            display: block;
+            text-align: left;
+            font-size: 0.7vmax;
+            padding: 5%;
+            color: #4b2358;
+            font-family: 'Gothic A1', sans-serif;
+            font-weight: bold;
+            padding-bottom: 0;
+        }
+        .BoxTxt1 {
+            padding: 5%;
+            color: #4b2358;
+            font-weight: bold;
+            font-size: 2vmax;
+            font-family: 'Gothic A1', sans-serif;
+            padding-bottom: 0;
+        }
+        .BoxTxt2 {
+            padding: 5%;
+            color: #ee094a;
+            font-weight: bold;
+            font-size: 3vmax;
+            font-family: 'Gothic A1', sans-serif;
+            padding-bottom: 3%;
+            margin-bottom: 5%;
+            padding-top: 2%;
+            border-bottom: 1px solid #4b2358;
+        }
+        .BoxTxt3 {
+            padding: 5%;
+            font-size: 1.2vmax;
+            color: #3f3f3f;
+            font-family: 'Gothic A1', sans-serif;
+        }
+        .BoxTxt3 strong {
+            font-size: 2vmax;
+            padding: 5%;
+            color: #ee094a;
+        }
+        .teacher {
+            width: 100%;
+            height: auto;
+        }
+        .teacherLst {
+            width: 100%;
+            height: auto;
+        }
+        .teacherLst li {
+            float: left;
+            width: 22%;
+            height: auto;
+            margin: 1.5%;
+        }
+        .teacherLst li img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .teacherName {
+            display: block;
+            text-align: center;
+        }
+    </style>
+    
+    <script>
+        $(document).ready(function(){
+            $(".con1Tit").delay(500).not(":animated").animate({"opacity": "1"}, 1200);
+            $(".con1Btn").delay(1000).not(":animated").animate({"opacity": "1"}, 1200);
+            $(".con1Img").delay(1500).not(":animated").animate({"opacity": "1"}, 1200);
+            $(".opa1").delay(2000).not(":animated").animate({"opacity": "1"}, 1200);
+            $(".opa2").delay(2500).not(":animated").animate({"opacity": "1"}, 1200);
+            
+            $(".con1Btn li a").removeAttr("href");
+            $(".con1Btn li a").click(function(){
+                $(this).addClass("on");
+                $(this).parent().siblings().find("a").removeClass("on");
+            });
+            $(".con1Btn li a.deGa").click(function(){
+                $(".All").css("margin-left", "0%");
+            });
+            $(".con1Btn li a.seGa").click(function(){
+                $(".All").css("margin-left", "-100%");
+                
+            });
+            
+            
+            
+        });
+    </script>
+
+</head>
+<body>
+   <div class="main" id="desktop">
+       <header id="hd">
+           <div class="hdIn">
+               <ul class="snsBox">
+                   <li><a href=""><img src="./images/skype.png" alt="전호"></a></li>
+                   <li><a href=""><img src="./images/twitter.png" alt="트위터"></a></li>
+                   <li><a href=""><img src="./images/insta.png" alt="인스타그램"></a></li>
+                   <li><a href=""><img src="./images/google.png" alt="구글"></a></li>
+               </ul>
+               
+               <ul class="sign">
+                   <li><a href=""><img src="./images/kart.png" alt="카트"></a></li>
+                   <li><a href="login.html">로그인</a></li>
+                   <li><a href="">회원가입</a></li>
+               </ul>
+               
+               <a href="index.html" class="logo">
+                   <img src="./images/logo.png" alt="로고">
+                </a>
+                
+                <ul class="menu">
+                    <li class="menuLst">
+                        <a href="./intro.html">INTRO</a>
+
+                    </li>
+                    <li class="menuLst">
+                        <a href="./makerspace.html">MAKER SPACE</a>
+
+                    </li>
+                    <li class="menuLst">
+                        <a href="./public.html">PUBLIC EDU</a>
+                    </li>
+                    <li class="menuLst">
+                        <a href="./rd.html">R &amp; D</a>
+
+                    </li>
+                    <li class="menuLst">
+                        <a href="./franchise.html" style="color: #ee094a">FRANCHISE</a>
+  
+                    </li>
+                    <li class="menuLst">
+                        <a href="./sosialcontribution.html">SOSIAL CONTRIBUTION</a>
+
+                    </li>
+                    <li class="menuLst">
+                        <a href="./shopping.html">SHOOPING MALL</a>
+                    </li>
+                </ul>
+           </div>
+       </header>
+       
+       <div class="Mhd">
+           <div class="MhdIn">
+               <div class="three col">
+                    <div class="hamburger" id="hamburger-9">
+                        <span class="line"></span>
+                        <span class="line"></span>
+                        <span class="line"></span>
+                    </div>
+                </div>
+           </div>
+           <div class="Mmenu">
+                    <ul class="MmenuLst">
+                        <li class="MmenuLst">
+                            <a href="">INTRO
+                            <h2 class="MmenuTxt">IFT를 소개합니다.</h2></a>
+
+                        </li>
+                        <li class="MmenuLst">
+                            <a href="">MAKER SPACE
+                            <h2 class="MmenuTxt">IFT의 메이커스페이스</h2></a>
+
+                        </li>
+                        <li class="MmenuLst">
+                            <a href="">PUBLIC EDU
+                            <h2 class="MmenuTxt">IFT 공공 교육</h2></a>
+                        </li>
+                        <li class="MmenuLst">
+                            <a href="">R &amp; D
+                            <h2 class="MmenuTxt">IFT R &amp; D 창출</h2></a>
+
+                        </li>
+                        <li class="MmenuLst">
+                            <a href="">FRANCHISE
+                            <h2 class="MmenuTxt">IFT 프렌차이즈 가온누리</h2></a>
+
+                        </li>
+                        <li class="MmenuLst">
+                            <a href="">SOSIAL CONTRIBUTION
+                            <h2 class="MmenuTxt">도움으로써 성장합니다.</h2></a>
+
+                        </li>
+                        <li class="MmenuLst">
+                            <a href="">SHOOPING MALL
+                            <h2 class="MmenuTxt">UBITECH 상품 쇼핑</h2></a>
+                        </li>
+                    </ul>
+                    
+                    <div class="MmenuSns">
+                        <h2 class="Maddress">주소 : 대전광역시 유성구 대학로 31 한진오피스텔 1515호</h2>
+                        <h2 class="Mcall">전화 : 070.4185.7272</h2>
+                        <a href="mailto:rococup.naver.com" class="Memail">이메일 : rococup@naver.com</a>
+                    </div>
+                    
+                    <div class="MmenuLogin">
+                        <a href="" class="MSign Mlogin">로그인</a>
+                        <a href="" class="MSign Mjoin">회원가입</a>
+                        <ul>
+                            <li class="Msns"><a href=""><img src="./images/Mskype.png" alt="전호"></a></li>
+                           <li class="Msns"><a href=""><img src="./images/Mtwitter.png" alt="트위터"></a></li>
+                           <li class="Msns"><a href=""><img src="./images/Minsta.png" alt="인스타그램"></a></li>
+                           <li class="Msns"><a href=""><img src="./images/Mgoogle.png" alt="구글"></a></li>
+                        </ul>
+                    </div>
+                </div>
+       </div>
+        
+        <div class="con" id="con1">
+            <div class="con1In">
+                <h2 class="con1Tit">GAONNURI</h2>
+                <ul class="con1Btn">
+                    <li><a href="" class="deGa on">대전 가온누리</a></li>
+                    <li><a href="" class="seGa">세종 가온누리</a></li>
+                </ul>
+                <div class="AllBox">
+                    <ul class="All">
+                        <li class="AllLst">
+                            <div class="daejeon">
+                        <img src="./images/franchise/con1Img.png" alt="" class="con1Img">
+
+                        <ul class="con1Box">
+                            <li class="con1BoxL con1BoxL1">
+                                <ul class="con1BoxIn">
+                                    <li class="opa1">
+                                        <span class="Boxline"></span>
+                                        <span class="BoxTit">Deajeon GAONNURI</span>
+                                        <h2 class="BoxTxt1">미래를 일깨우는 코딩교육</h2>
+                                        <h2 class="BoxTxt2">대전 가온누리</h2>
+                                        <h2 class="BoxTxt3">대전 가온누리에서 <strong>"재능기부"</strong> 행사를 실천합니다<br>가온누리는 미래를 꿈꾸어 가는 아이들에게 희망을 줄 뿐만 아니라, 교육시스템을 도입한 코딩교육을 가르침으로써, 재능을 기부하고, 아이들이 쫌 더 로봇에 대한 가까움을 보다 더 많이 알 수 있도록 도움을 주고 있습니다.</h2>
+                                    </li>
+                                    <li class="opa2">
+                                        <img src="./images/franchise/lstItemImg1.png" alt="">
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="con1BoxL con1BoxL2">
+                                <ul class="con1BoxIn">
+                                   <li>
+                                        <img src="./images/franchise/lstItemImg1.png" alt="">
+                                    </li>
+                                    <li>
+                                        <span class="Boxline"></span>
+                                        <span class="BoxTit">Deajeon GAONNURI</span>
+                                        <h2 class="BoxTxt1">미래를 일깨우는 코딩교육</h2>
+                                        <h2 class="BoxTxt2">대전 가온누리</h2>
+                                        <h2 class="BoxTxt3">대전 가온누리에서 <strong>"재능기부"</strong> 행사를 실천합니다<br>가온누리는 미래를 꿈꾸어 가는 아이들에게 희망을 줄 뿐만 아니라, 교육시스템을 도입한 코딩교육을 가르침으로써, 재능을 기부하고, 아이들이 쫌 더 로봇에 대한 가까움을 보다 더 많이 알 수 있도록 도움을 주고 있습니다.</h2>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="con1BoxL con1BoxL3">
+                                <ul class="con1BoxIn">
+                                    <li>
+                                        <span class="Boxline"></span>
+                                        <span class="BoxTit">Deajeon GAONNURI</span>
+                                        <h2 class="BoxTxt1">미래를 일깨우는 코딩교육</h2>
+                                        <h2 class="BoxTxt2">대전 가온누리</h2>
+                                        <h2 class="BoxTxt3">대전 가온누리에서 <strong>"재능기부"</strong> 행사를 실천합니다<br>가온누리는 미래를 꿈꾸어 가는 아이들에게 희망을 줄 뿐만 아니라, 교육시스템을 도입한 코딩교육을 가르침으로써, 재능을 기부하고, 아이들이 쫌 더 로봇에 대한 가까움을 보다 더 많이 알 수 있도록 도움을 주고 있습니다.</h2>
+                                    </li>
+                                    <li>
+                                        <img src="./images/franchise/lstItemImg1.png" alt="">
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="con1BoxL con1BoxL4">
+                                <ul class="con1BoxIn">
+                                   <li>
+                                        <img src="./images/franchise/lstItemImg1.png" alt="">
+                                    </li>
+                                    <li>
+                                        <span class="Boxline"></span>
+                                        <span class="BoxTit">Deajeon GAONNURI</span>
+                                        <h2 class="BoxTxt1">미래를 일깨우는 코딩교육</h2>
+                                        <h2 class="BoxTxt2">대전 가온누리</h2>
+                                        <h2 class="BoxTxt3">대전 가온누리에서 <strong>"재능기부"</strong> 행사를 실천합니다<br>가온누리는 미래를 꿈꾸어 가는 아이들에게 희망을 줄 뿐만 아니라, 교육시스템을 도입한 코딩교육을 가르침으로써, 재능을 기부하고, 아이들이 쫌 더 로봇에 대한 가까움을 보다 더 많이 알 수 있도록 도움을 주고 있습니다.</h2>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="teacher">
+                           <h2 class="con1Tit">교수진</h2>
+                            <ul class="teacherLst">
+                                <li>
+                                    <img src="./images/franchise/teacherImg1.png" alt="">
+                                    <span class="teacherName">홍길동<br>010 - 1111 - 1111</span>
+                                </li>
+                                <li>
+                                    <img src="./images/franchise/teacherImg1.png" alt="">
+                                    <span class="teacherName">홍길상<br>010 - 2222 - 2222</span>
+                                </li>
+                                <li>
+                                    <img src="./images/franchise/teacherImg1.png" alt="">
+                                    <span class="teacherName">홍길부<br>010 - 3333 - 3333</span>
+                                </li>
+                                <li>
+                                    <img src="./images/franchise/teacherImg1.png" alt="">
+                                    <span class="teacherName">홍길덩<br>010 - 4444 - 4444</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                        </li>
+
+                        <li class="AllLst">
+                            <div class="sejong">
+                        <img src="./images/franchise/con1Img2.png" alt="" class="con1Img">
+
+                        <ul class="con1Box">
+                            <li class="con1BoxL con1BoxL1">
+                                <ul class="con1BoxIn">
+                                    <li>
+                                        <span class="Boxline"></span>
+                                        <span class="BoxTit">Sejong GAONNURI</span>
+                                        <h2 class="BoxTxt1">미래를 일깨우는 코딩교육</h2>
+                                        <h2 class="BoxTxt2">세종 가온누리</h2>
+                                        <h2 class="BoxTxt3">세종 가온누리에서 <strong>"재능기부"</strong> 행사를 실천합니다<br>가온누리는 미래를 꿈꾸어 가는 아이들에게 희망을 줄 뿐만 아니라, 교육시스템을 도입한 코딩교육을 가르침으로써, 재능을 기부하고, 아이들이 쫌 더 로봇에 대한 가까움을 보다 더 많이 알 수 있도록 도움을 주고 있습니다.</h2>
+                                    </li>
+                                    <li>
+                                        <img src="./images/franchise/lstItemImg1.png" alt="">
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="con1BoxL con1BoxL2">
+                                <ul class="con1BoxIn">
+                                   <li>
+                                        <img src="./images/franchise/lstItemImg1.png" alt="">
+                                    </li>
+                                    <li>
+                                        <span class="Boxline"></span>
+                                        <span class="BoxTit">Sejong GAONNURI</span>
+                                        <h2 class="BoxTxt1">미래를 일깨우는 코딩교육</h2>
+                                        <h2 class="BoxTxt2">세종 가온누리</h2>
+                                        <h2 class="BoxTxt3">세종 가온누리에서 <strong>"재능기부"</strong> 행사를 실천합니다<br>가온누리는 미래를 꿈꾸어 가는 아이들에게 희망을 줄 뿐만 아니라, 교육시스템을 도입한 코딩교육을 가르침으로써, 재능을 기부하고, 아이들이 쫌 더 로봇에 대한 가까움을 보다 더 많이 알 수 있도록 도움을 주고 있습니다.</h2>
+                                    </li>
+
+                                </ul>
+                            </li>
+                            <li class="con1BoxL con1BoxL3">
+                                <ul class="con1BoxIn">
+                                    <li>
+                                        <span class="Boxline"></span>
+                                        <span class="BoxTit">Sejong GAONNURI</span>
+                                        <h2 class="BoxTxt1">미래를 일깨우는 코딩교육</h2>
+                                        <h2 class="BoxTxt2">세종 가온누리</h2>
+                                        <h2 class="BoxTxt3">세종 가온누리에서 <strong>"재능기부"</strong> 행사를 실천합니다<br>가온누리는 미래를 꿈꾸어 가는 아이들에게 희망을 줄 뿐만 아니라, 교육시스템을 도입한 코딩교육을 가르침으로써, 재능을 기부하고, 아이들이 쫌 더 로봇에 대한 가까움을 보다 더 많이 알 수 있도록 도움을 주고 있습니다.</h2>
+                                    </li>
+                                    <li>
+                                        <img src="./images/franchise/lstItemImg1.png" alt="">
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="con1BoxL con1BoxL4">
+                                <ul class="con1BoxIn">
+                                   <li>
+                                        <img src="./images/franchise/lstItemImg1.png" alt="">
+                                    </li>
+                                    <li>
+                                        <span class="Boxline"></span>
+                                        <span class="BoxTit">Sejong GAONNURI</span>
+                                        <h2 class="BoxTxt1">미래를 일깨우는 코딩교육</h2>
+                                        <h2 class="BoxTxt2">세종 가온누리</h2>
+                                        <h2 class="BoxTxt3">세종 가온누리에서 <strong>"재능기부"</strong> 행사를 실천합니다<br>가온누리는 미래를 꿈꾸어 가는 아이들에게 희망을 줄 뿐만 아니라, 교육시스템을 도입한 코딩교육을 가르침으로써, 재능을 기부하고, 아이들이 쫌 더 로봇에 대한 가까움을 보다 더 많이 알 수 있도록 도움을 주고 있습니다.</h2>
+                                    </li>
+
+                                </ul>
+                            </li>
+                        </ul>
+
+                        <div class="teacher">
+                           <h2 class="con1Tit">교수진</h2>
+                            <ul class="teacherLst">
+                                <li>
+                                    <img src="./images/franchise/teacherImg1.png" alt="">
+                                    <span class="teacherName">홍길동<br>010 - 1111 - 1111</span>
+                                </li>
+                                <li>
+                                    <img src="./images/franchise/teacherImg1.png" alt="">
+                                    <span class="teacherName">홍길상<br>010 - 2222 - 2222</span>
+                                </li>
+                                <li>
+                                    <img src="./images/franchise/teacherImg1.png" alt="">
+                                    <span class="teacherName">홍길부<br>010 - 3333 - 3333</span>
+                                </li>
+                                <li>
+                                    <img src="./images/franchise/teacherImg1.png" alt="">
+                                    <span class="teacherName">홍길덩<br>010 - 4444 - 4444</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                
+                
+                
+            </div>
+        </div>
+
+        <footer id="ft">
+            <div class="ftIn">
+                <div class="ftSns">
+                    <ul>
+                        <li><a href=""><img src="./images/kakao.png" alt="ftSns"></a></li>
+                        <li><a href=""><img src="./images/instagram.png" alt="ftSns"></a></li>
+                        <li><a href=""><img src="./images/facebook.png" alt="ftSns"></a></li>
+                        <li><a href=""><img src="./images/blog.png" alt="ftSns"></a></li>
+                    </ul>
+                </div>
+                
+                <div class="ftLeft">
+                    <a href="" class="ftLogo">
+                        <img src="./images/ftLogo.png" alt="footerLogo">
+                    </a>
+                    <a href="" class="ftBtn">사업자정보확인</a>
+                    <h2 class="address">주소 : 대전광역시 유성구 대학로 31 한진오피스텔 1515호</h2>
+                    <h2 class="call">전화 : 070.4185.7272</h2>
+                    <a href="mailto:rococup.naver.com" class="email">rococup@naver.com</a>
+                </div>
+                <div class="ftRight">
+                    <a href="" class="ftSIte familly">패밀리사이트 ▲</a>
+                    <ul class="faSite">
+                        <li><a href="">한국로봇교육연합회</a></li>
+                        <li><a href="">세종 가온누리</a></li>
+                        <li><a href="">대전 가온누리</a></li>
+                        <li><a href="">유비테크</a></li>
+                    </ul>
+                    <a href="" class="ftSIte ftFirst">자주찾는 메뉴 ▲</a>
+                    
+                </div>
+            </div>
+            <div class="ftBottom">
+                   <div class="ftIn">
+                        <h2 class="copyright">Copyright ⓒ IFT All Rights Reserved </h2>
+                        <a href="" class="toTop">
+                            <img src="" alt="">
+                        </a>
+
+                        <ul class="ftMenu">
+                            <li><a href="" style="color: #c82050;">개인정보처리방침</a></li>
+                            <li><a href="">사이트 이용약관</a></li>
+                            <li><a href="">오시는 길</a></li>
+                            <li><a href="">회사소개</a></li>
+                        </ul>
+                    </div>
+                </div>
+        </footer>
+        
+        <div class="Mft">
+            <div class="MftIn">
+                
+                <h2 class="address" style="color: #3f3f3f;">주소 : 대전광역시 유성구 대학로 31 한진오피스텔 1515호</h2>
+                    <h2 class="call" style="color: #3f3f3f;">전화 : 070.4185.7272</h2>
+                    <a href="mailto:rococup.naver.com" class="email" style="color: #3f3f3f; font-weight: bold;">rococup@naver.com</a>
+                    <h2 class="Mcopyright" st>Copyright ⓒ IFT All Rights Reserved</h2>
+            </div>
+        </div>
+   </div>
+   
+   <!-- 옆슬라이스(어사이드) 영역 -->
+    <input type="checkbox" id="collapCk1" class="ckItem">
+    
+    <aside class="collapFrame" style="z-index: 9999;"><label for="collapCk1" class="opener"></label>
+       <div class="slider">
+          <div class="slide active">
+            <div class="panel">
+              <div class="top"></div>
+              <div class="bottom"></div>
+            </div>
+            <div class="center">
+              <h1>미래를 향한 움직임을 실현하다.</h1>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="panel">
+              <div class="top"></div>
+              <div class="bottom"></div>
+            </div>
+            <div class="center">
+              <h1>성공적인 미래를 선도한다.</h1>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="panel">
+              <div class="top"></div>
+              <div class="bottom"></div>
+            </div>
+            <div class="center">
+              <h1>글로벌 아이덴티티의 혁신 IFT</h1>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="panel">
+              <div class="top"></div>
+              <div class="bottom"></div>
+            </div>
+            <div class="center">
+              <h1>성적이 아닌, 성장의 중요성</h1>
+            </div>
+          </div>
+    </div>
+        <div class="cnb">
+            <label for="collapCk1" class="closeBtn1"></label>
+            <h3 class="collapName wTxt">IFT Towards the future</h3>
+        </div>
+    </aside>
+    
+    <a href="#" class="totop"><img src="./images/totop.png" alt=""></a>
+
+
+</body>
+</html>
