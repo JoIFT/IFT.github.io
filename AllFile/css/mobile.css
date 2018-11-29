@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+        .Mft {
+            width: 100%;
+            height: auto;
+        }
+        .MftIn {
+            width: 80%;
+            height: auto;
+            margin: 0 auto;
+        }
+        .Mcopyright {
+            text-align: center;
+            color: #3f3f3f;
+            font-size: 1.1vmax;
+            padding-top: 5%;
+            padding-bottom: 2%;
+        }
