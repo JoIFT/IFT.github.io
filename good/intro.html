@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1, maximum-scale=1, user-scalable=no, target-densitydpi=medium-dpi">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="keywords" content="IFT, 기술, 교육, 무한, 메이커스페이스, 가온누리, 퍼블릭에듀">
+    <meta name="Description" content="Global Education Company - EduTech">
+    <!--[if IE]>
+    <<script src="http://html5shiv.googlecode.com/svn/truk/html5.js>
+    </script>
+    <![endif]-->
+
+    <!-- Firefox, opera (Chrome and safari say thanks but no thanks) -->
+
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <title>:: IFT ::</title>
+    
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> 
+
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
+    
+    <!-- 폰트링크 -->
+    <link href="https://fonts.googleapis.com/css?family=Gothic+A1" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Amethysta" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+    
+    <!-- 기본 -->
+    <link rel="stylesheet" href="./css/basic.css">
+    
+    <!-- 헤더 -->
+    <link rel="stylesheet" href="./css/header.css">
+
+    <!-- aside -->
+    <link rel="stylesheet" href="./css/aside.css">
+    
+    <!-- 슬레 -->
+    <style>
+        .slider { 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            height: 100vh;
+            overflow: hidden;
+            cursor: pointer;
+          }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+          .slide:nth-child(1) .panel > * {
+            background: #636fee;
+            color: #7594f0;
+          }
+          .slide:nth-child(2) .panel > * {
+            background: #a8cb86;
+            color: #bdd194;
+          }
+          .slide:nth-child(3) .panel > * {
+            background: #63afee;
+            color: #75cdf0;
+          }
+          .slide:nth-child(4) .panel > * {
+            background: #d24b62;
+            color: #d65c5c;
+          }
+          .slide .center {
+            opacity: 0;
+            transition: opacity linear 300ms;
+          }
+          .slide .panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+          }
+          .slide .top, .slide .bottom {
+            content: attr(data-back);
+            position: absolute;
+            font-size: 50vh;
+            font-weight: 800;
+            height: 50vh;
+            width: 100vw;
+            text-align: center;
+            z-index: 1;
+            overflow: hidden;
+            box-sizing: border-box;
+            transition: -webkit-transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865);
+            transition: transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865);
+            transition: transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865), -webkit-transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865);
+          }
+          .slide .top:after, .slide .bottom:after {
+            position: relative;
+            display: inline-block;
+            transition: -webkit-transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865);
+            transition: transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865);
+            transition: transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865), -webkit-transform 600ms cubic-bezier(1, 0.005, 0.57, 0.865);
+            content: attr(data-back);
+            font-family: "BenchNine", sans-serif;
+          }
+          .slide .top {
+            line-height: 100vh;
+            -webkit-transform: translatey(-50vh);
+                    transform: translatey(-50vh);
+          }
+          .slide .top:after {
+            -webkit-transform: translatey(50vh);
+                    transform: translatey(50vh);
+          }
+          .slide .bottom {
+            bottom: 0;
+            line-height: 0vh;
+            -webkit-transform: translatey(50vh);
+                    transform: translatey(50vh);
+          }
+          .slide .bottom:after {
+            -webkit-transform: translatey(-50vh);
+                    transform: translatey(-50vh);
+          }
+          .slide.active .center {
+            opacity: 1;
+            transition: opacity linear 300ms;
+            transition-delay: 600ms;
+          }
+          .slide.active .top, .slide.active .bottom {
+            transition: none;
+            -webkit-transform: translatey(0);
+                    transform: translatey(0);
+            z-index: -1;
+          }
+          .slide.active .top:after, .slide.active .bottom:after {
+            transition: -webkit-transform cubic-bezier(0.23, 1, 0.32, 1) 1200ms;
+            transition: transform cubic-bezier(0.23, 1, 0.32, 1) 1200ms;
+            transition: transform cubic-bezier(0.23, 1, 0.32, 1) 1200ms, -webkit-transform cubic-bezier(0.23, 1, 0.32, 1) 1200ms;
+            -webkit-transform: translatey(0);
+                    transform: translatey(0);
+          }
+
+          .center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate3d(-50%, -50%, 0);
+                    transform: translate3d(-50%, -50%, 0);
+            z-index: 2;
+            text-align: center;
+          }
+          .center h1 {
+            font-size: 5vh;
+            line-height: 1;
+            font-family: "BenchNine", sans-serif;
+              color: #fff;
+          }
+    </style>
+    
+    <style>
+      a.totop {
+        position: fixed;
+        right: 10%;
+        bottom: 20%;
+        display: none;
+          width: 2%;
+          height: 2%;
+      }
+        a.totop img {
+            width: 100%;
+            height: auto;
+        }
+    </style> <!-- top -->
+    
+    <!-- 푸터 -->
+    <link rel="stylesheet" href="./css/footer.css">
+
+    <!-- 태블릿 스타일 -->
+    <link rel="stylesheet" href="./css/tablelet.css">
+    
+    <!-- 모바일 스타일 -->
+    <link rel="stylesheet" href="./css/mobile.css">
+    
+    <!-- 미디어 쿼리 -->
+    <link rel="stylesheet" href="./css/query.css">
+    
+    
+
+    <style>
+        .particle-count {
+            display: block;
+            text-align: center;
+            margin: 25px 0;
+            
+        }
+        .particles > .particle {
+            border-radius: 100%;
+            background: transparent;
+            position: absolute;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+        .particles > .particle.smaller {
+            width: 5px;
+            height: 5px;
+        }
+        .particles > .particle.small {
+            width: 10px;
+            height: 10px;
+        }
+        .particles > .particle.normal {
+            width: 15px;
+            height: 15px;
+        }
+        .particles > .particle.big {
+            width: 20px;
+            height: 20px;
+        }
+        .particles > .particle.bigger {
+            width: 25px;
+            height: 25px;
+        }
+       
+    </style>
+
+    
+    <script>
+        //한 페이지씩 스크롤
+        $(document).ready(function () {
+        	var pg = parseInt($(window).height());
+			$(window).on('mousewheel', function(e){
+				if(e.originalEvent.wheelDelta < 0) {
+					$('html, body').not(":animated").animate({
+                        scrollTop : '+='+'200%'},300);
+				} else {
+					$('html, body').not(":animated").animate({
+                        scrollTop : '-='+'200%'},300);
+				}
+				return false;
+			});
+		});
+    </script> <!-- 한페이지씩 스크롤 -->
+
+    <script>
+            $(document).on('click',nextSlide);
+
+            function nextSlide(){
+              console.log($('.active + .slide').length);
+              if ($('.active + .slide').length > 0){
+                $('.active + .slide').addClass('active');
+                $($('.active')[0]).removeClass('active');
+              } else{
+                $('.active').removeClass('active');
+                $('.slide:nth-child(1)').addClass('active');
+              }
+            }
+        </script> <!-- 어사이드 -->
+
+    <script>
+        $(document).ready(function(){
+            var tran = 0;
+        $('.closeBtn1').click(function() {
+          $(this).toggleClass("on");
+        });
+    });
+    </script> <!-- 어사이드 닫기 -->
+    
+    <script>
+        $(document).ready(function(){
+            $(".product .col").hover(function(){
+                $(".line1").fadeIn(500);
+                $(this).find(".c2Line.l1").css("width", "100%");
+                $(this).find(".c2Line.l2").css("height", "100%");
+                $(this).find(".c2Line.l3").css("width", "100%");
+                $(this).find(".c2Line.l4").css("height", "100%");
+            });
+            $(".product .col").mouseleave(function(){
+                $(this).find(".c2Line.l1").css("width", "0%");
+                $(this).find(".c2Line.l2").css("height", "0%");
+                $(this).find(".c2Line.l3").css("width", "0%");
+                $(this).find(".c2Line.l4").css("height", "0%");
+            });
+        });
+    </script> <!-- con2 hover -->
+    
+    <script>
+        $(document).ready(function(){
+            $(".ftRight a.ftSIte.familly").removeAttr("href");
+            $(".ftRight a.ftSIte.familly").click(function(){
+                $(this).toggleClass("on");
+                $(".faSite").slideToggle(500);
+            });
+        });
+    </script> <!-- 푸터 familly site -->
+
+    
+    <script>
+        $(document).ready(function(){
+            $(".product .col a").removeAttr("href");
+            $(".product .col").click(function(){
+                $(".conClick1").slideDown(500);
+            });
+            $(".clickClose").click(function(){
+                $(".conClick1").slideUp(500);
+            });
+        });
+    </script>
+    
+    <!-- 태블릿 스크립트 -->
+    <script>
+        $(document).ready(function(){
+            $(".MmenuBtn").click(function(){
+                $(".MmenuBtn span").toggleClass("on");
+                $(".MmenuBtn").toggleClass("on");
+                $(".MmenuBox").toggleClass("on");
+            });
+        });
+    </script>
+    
+    <script>
+            $(document).ready(function(){
+              $(".hamburger").click(function(){
+                $(this).toggleClass("is-active");
+                  $(".Mmenu").toggleClass("on");
+              });
+            });
+        </script> <!-- 메뉴 버튼 -->
+        
+        <script>
+      $( document ).ready( function() {
+        $( window ).scroll( function() {
+          if ( $( this ).scrollTop() > 200 ) {
+            $( '.totop' ).fadeIn();
+          } else {
+            $( '.totop' ).fadeOut();
+          }
+        } );
+        $( '.totop' ).click( function() {
+          $( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+          return false;
+        } );
+      } );
+    </script> <!-- top -->
+    
+    <style>
+        .allBox {
+            width: 100%;
+            height: auto;
+            background-image: url("https://joift.github.io/IFT.github.io/hello/introBg.png");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        .introMenu {
+            width: 100%;
+            height: auto;
+        }
+        .introMenu ul {
+            width: 40%;
+            height: auto;
+            margin: 0% auto;
+            padding: 5%;
+        }
+        .introMenu ul:after {
+            content: " ";
+            display: block;
+            clear: both;
+        }
+        .introMenu ul li {
+            float: left;
+            width: 25%;
+            height: auto;
+            box-sizing: border-box;
+        }
+        .introMenu ul li a {
+            display: block;
+            width: 100%;
+            height: auto;
+            padding: 7.5%;
+            box-sizing: border-box;
+            text-align: center;
+            color: #3f3f3f;
+            font-size: 1.0vmax;
+            font-weight: bold;
+            font-family: 'Gothic A1', sans-serif;
+            background-color: #fff;
+            cursor: pointer;
+            transition: 0.5s;
+        }
+        .introMenu ul li a.on {
+            background-color: #3f3f3f;
+            box-shadow: 1px 1px 10px #3f3f3f;
+            color: #fff;
+        }
+        .conTit1 {
+            text-align: center;
+            font-size: 4vmax;
+            font-weight: bold;
+            color: #fff;
+            padding: 5%;
+            padding-bottom: 0.5%;
+        }
+        .conTit2 {
+            text-align: center;
+            font-size: 0.7vmax;
+            font-weight: bold;
+            color: #fff;
+            padding-bottom: 2.5%;
+            font-family: 'Gothic A1', sans-serif;
+        }
+        #con1 {
+            width: 80%;
+            height: auto;
+            margin: 0 auto;
+            padding: 5%;
+            padding-top: 0;
+            overflow: hidden;
+        }
+        .con1AllLst {
+            width: 400%;
+            height: auto;
+        }
+        .con1AllLst:after {
+            content: " ";
+            display: block;
+            clear: both;
+        }
+        .con1AllLst li.con1AllLstList {
+            float: left;
+            width: 25%;
+            height: auto;
+            position: relative;
+        }
+        .con1AllLst li.con1AllLstList ul.ceoBox {
+            width: 100%;
+            height: auto;
+            margin-top: 10%;
+        }
+        .con1AllLst li.con1AllLstList ul.ceoBox li {
+            float: left;
+            width: 50%;
+            height: auto;
+        }
+        .con1AllLst li.con1AllLstList ul li.liBorder {
+            
+        }
+        .con1AllLst li.con1AllLstList ul li.liTxt {
+            padding: 0% 10% 0% 10%;
+            box-sizing: border-box;
+            border-left: 2px solid #fff;
+            box-sizing: border-box;
+        }
+        .masterBox {
+            width: 50%;
+            height: auto;
+            margin: 0% auto;
+            position: relative;
+            margin-left: 40%;
+            margin-top: 0%;
+        }
+        .ciBox {
+            width: 70%;
+            height: auto;
+            margin: 0% auto;
+            background-color: #ffffff;
+            position: relative;
+            margin-top: 5%;
+        }
+        .ciImg {
+            display: block;
+            width: 100%;
+            height: auto;
+            margin: 0 auto;
+        }
+        .masterBox {
+            
+        }
+        .masterBox img {
+            display: block;
+            width: 75%;
+            height: auto;
+        }
+        .masterImg {
+            opacity: 1;
+            margin-bottom: 10%;
+        }
+        .masterName {
+            text-align: left;
+            font-size: 1vmax;
+            font-weight: bold;
+            color: #fff;
+            font-family: 'Gothic A1', sans-serif;
+        }
+        .masterName strong {
+            font-size: 3vmax;
+            padding-left: 4%;
+            box-sizing: border-box;
+        }
+        .masterNameEn {
+            text-align: left;
+            font-size: 0.75vmax;
+            font-weight: bold;
+            color: #fff;
+            font-family: 'Gothic A1', sans-serif;
+        }
+        .masterHello {
+            display: block;
+            margin: 10% auto;
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 0.7vmax;
+            font-family: 'Gothic A1', sans-serif;
+        }
+        .areaBox {
+            width: 80%;
+            height: auto;
+            margin: 0 auto;
+        }
+        .areaBox li {
+            width: 45%;
+            height: auto;
+            margin: 2.5%;
+            float: left;
+            transition: 0.5s;
+        }
+        .areaBox li img {
+            display: block;
+            width: 58%;
+            height: auto;
+            margin: 0 auto;
+            transition: 0.5s;
+            opacity: 1;
+        }
+        .areaBox li img.on {
+            opacity: 0;
+        }
+        .areaLogo {
+            display: block;
+            width: 20%;
+            height: auto;
+            position: absolute;
+            top: 60%;
+            left: 40%;
+        }
+        .areaI {
+            position: relative;
+            cursor: pointer;
+        }
+        .areaTit {
+            display: block;
+            position: absolute;
+            top: 40%;
+            width: 50%;
+            height: auto;
+            font-size: 2.5vmax;
+            color: #fff;
+            font-weight: bold;
+            font-family: 'Gothic A1', sans-serif;
+            left: 25%;
+            text-align: center;
+            text-shadow: 2px 1px 5px #333;
+            transition: 0.5s;
+        }
+        .areaTit.on {
+            display: none;
+        }
+        .areaBox li.on {
+            transform: rotateY(180deg);
+            background-color: #fff;
+        }
+        .hoverTxt {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            text-align: center;
+            color: #3f3f3f;
+            font-size: 0.8vmax;
+            font-weight: bold;
+            padding: 10%;
+            box-sizing: border-box;
+            display: none;
+            transform: rotateY(180deg);
+            font-family: 'Gothic A1', sans-serif;
+            line-height: 2.5vmax;
+        }
+        .hoverTxt strong {
+            color: #ee094a;
+            margin: 5%;
+            font-size: 1.3vmax;
+        }
+        .download {
+            display: inline-block;
+            font-size: 1vmax;
+            background-color: #fff;
+            color: #3f3f3f;
+            text-align: center;
+            font-weight: bold;
+            padding: 5%;
+            box-sizing: border-box;
+        }
+        .navLogo {
+            display: block;
+            width: 70%;
+            height: auto;
+        }
+        #map_canvas {
+            clear: both;
+            width: 100%;
+            height: 12.5vw;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+    
+    <style>
+        .t_2_1, .t_2_2, .I1, .I2, .I3, .I4 {
+            opacity: 0;
+        }
+        .t_3_1, .t_3_2, .aniCi, .infinity, .infiT1, .infiT2, .download {
+            opacity: 0;
+        }
+        .aniCi {
+            margin-top: 30%;
+        }
+        .t_4_1, .t_4_2, .mapBox, .navLogo, .navTxt {
+            opacity: 0;
+        }
+        .t_1_1, .t_1_2, .masLogo, .masNK, .masNE, .masHL {
+            opacity: 0;
+        }
+    </style> <!-- 텍스트 -->
+    
+    <script>
+        $(document).ready(function(){
+            $(".introMenu ul li a").removeAttr("href");
+            $("#con1 .conTit1.t_1_1").delay(1000).animate({"opacity": "1"}, 500);
+            $("#con1 .conTit2.t_1_2").delay(1500).animate({"opacity": "1"}, 500);
+            $("#con1 .masLogo").delay(2000).animate({"opacity": "1"}, 500);
+            $("#con1 .masNK").delay(2500).animate({"opacity": "1"}, 500);
+            $("#con1 .masNE").delay(2200).animate({"opacity": "1"}, 500);
+            $("#con1 .masHL").delay(2700).animate({"opacity": "1"}, 500);
+            
+            $(".introMenu ul li a").click(function(){
+                $(this).addClass("on");
+                $(this).parent().siblings().find("a").removeClass("on");
+            });
+            $(".helloBtn").click(function(){
+                $(".con1AllLst").stop().not(":animated").animate({"margin-left": "0%"}, 800);
+                $("#con1 .conTit1.t_1_1").delay(1000).animate({"opacity": "1"}, 500);
+                $("#con1 .conTit2.t_1_2").delay(1500).animate({"opacity": "1"}, 500);
+                $("#con1 .masLogo").delay(2000).animate({"opacity": "1"}, 500);
+                $("#con1 .masNK").delay(2500).animate({"opacity": "1"}, 500);
+                $("#con1 .masNE").delay(2200).animate({"opacity": "1"}, 500);
+                $("#con1 .masHL").delay(2700).animate({"opacity": "1"}, 500);
+                $(".t_2_1, .t_2_2, .I1, .I2, .I3, .I4").stop().css("opacity", "0");
+                $(".t_3_1, .t_3_2, .aniCi, .infinity, .infiT1, .infiT2, .download").stop().css("opacity", "0");
+                $(".aniCi").stop().css("margin-top", "30%");
+                $(".t_4_1, .t_4_2, .mapBox, .navLogo, .navTxt").stop().css("opacity", "0");
+            });
+            $(".LuBtn").click(function(){
+                $(".con1AllLst").stop().not(":animated").animate({"margin-left": "-100%"}, 800);
+                $("#con1 .conTit1.t_2_1").delay(1000).animate({"opacity": "1"}, 500);
+                $("#con1 .conTit2.t_2_2").delay(1500).animate({"opacity": "1"}, 500);
+                $(".I1").delay(2000).animate({"opacity": "1"}, 500);
+                $(".I2").delay(2500).animate({"opacity": "1"}, 500);
+                $(".I3").delay(3000).animate({"opacity": "1"}, 500);
+                $(".I4").delay(3500).animate({"opacity": "1"}, 500);
+                $(".t_3_1, .t_3_2, .aniCi, .infinity, .infiT1, .infiT2, .download").stop().css("opacity", "0");
+                $(".aniCi").stop().css("margin-top", "30%");
+                $(".t_4_1, .t_4_2, .mapBox, .navLogo, .navTxt").stop().css("opacity", "0");
+                $(".t_1_1, .t_1_2, .masLogo, .masNK, .masNE, .masHL").stop().css("opacity", "0");
+            });
+            $(".ciBtn").click(function(){
+                $(".con1AllLst").stop().not(":animated").animate({"margin-left": "-200%"}, 800);
+                $("#con1 .conTit1.t_3_1").delay(1000).animate({"opacity": "1"}, 500);
+                $("#con1 .conTit2.t_3_2").delay(1500).animate({"opacity": "1"}, 500);
+                $(".aniCi").delay(3200).animate({"margin-top": "5%", "opacity": "1"}, 500);
+                $(".infinity").delay(2000).animate({"opacity": "1"}, 500);
+                $(".infiT1").delay(2500).animate({"opacity": "1"}, 500);
+                $(".infiT2").delay(3000).animate({"opacity": "1"}, 500);
+                $(".download1").delay(4000).animate({"opacity": "1"}, 500);
+                $(".download2").delay(4500).animate({"opacity": "1"}, 500);
+                $(".t_2_1, .t_2_2, .I1, .I2, .I3, .I4").stop().css("opacity", "0");
+                $(".t_4_1, .t_4_2, .mapBox, .navLogo, .navTxt").stop().css("opacity", "0");
+                $(".t_1_1, .t_1_2, .masLogo, .masNK, .masNE, .masHL").stop().css("opacity", "0");
+            });
+            $(".navBtn").click(function(){
+                $(".con1AllLst").stop().not(":animated").animate({"margin-left": "-300%"}, 800);
+                $("#con1 .conTit1.t_4_1").delay(1000).animate({"opacity": "1"}, 500);
+                $("#con1 .conTit2.t_4_2").delay(1500).animate({"opacity": "1"}, 500);
+                $("#con1 .mapBox").delay(2000).animate({"opacity": "1"}, 500);
+                $("#con1 .navLogo").delay(2500).animate({"opacity": "1"}, 500);
+                $("#con1 .navTxt").delay(3000).animate({"opacity": "1"}, 500);
+                $(".t_2_1, .t_2_2, .I1, .I2, .I3, .I4").stop().css("opacity", "0");
+                $(".t_3_1, .t_3_2, .aniCi, .infinity, .infiT1, .infiT2, .download").stop().css("opacity", "0");
+                $(".aniCi").stop().css("margin-top", "30%");
+                $(".t_1_1, .t_1_2, .masLogo, .masNK, .masNE, .masHL").stop().css("opacity", "0");
+            });
+        });
+    </script>
+    
+    <script>
+        $(document).ready(function(){
+            $(".areaBox li").click(function(){
+                $(this).find("img").toggleClass("on");
+                $(this).find(".areaTit").toggleClass("on");
+                $(this).stop().toggleClass("on");
+                $(this).stop().find(".boxLstTxt").toggleClass("on");
+                $(this).stop().find(".hoverTxt").fadeToggle(500);
+            });
+        });
+    </script>
+    
+    <script>
+      function initialize() {
+       var myLatlng = new google.maps.LatLng(36.356626, 127.341945);
+       var mapOptions = {
+            zoom: 17,
+            center: myLatlng,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+       }
+       var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+          var marker = new google.maps.Marker({
+             position: myLatlng,
+             map: map,
+             title: "한진오피스텔 1515호 IFT"
+            });
+          
+      }
+ </script>
+
+    
+    <style>
+        @media screen and (max-width: 767px) {
+            /* 모바일 */ 
+            
+            #mobile {
+                display: block;
+            }
+            #desktop {
+                display: none;
+            }
+            .popBox {
+            position: fixed;
+            top: 0%;
+            left: 0%;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(64, 73, 72, 0.9);
+            transition: 2s;
+        }
+        .popBox.off {
+            transform:  rotateZ(-336deg) rotateX(120deg) rotateY(1635deg);
+            top: -200%;
+        }
+        .popIn {
+            width: 50%;
+            height:50%;
+            margin: 12.5% auto;
+        }
+        .popTit {
+            text-align: center;
+            color: #ffffff;
+            font-size: 5vmax;
+        }
+        .clocks {
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 0;
+            opacity: 0.2;
+            left: 0%;
+            transform:translate(-5%, 0%);
+            display: block;
+        }
+        .popTit2 {
+            font-size: 1vmax;
+            font-weight: 100;
+            text-align: center;
+            color: #fff;
+            margin: 0 auto;
+            padding-bottom: 5%;
+        }
+        .back {
+            display: none;
+            margin: 20% auto;
+            width: 40%;
+            height: auto;
+            text-align: center;
+            background-color: #fff;
+            color: #3f3f3f;
+            font-weight: bold;
+            font-size: 2vmax;
+            z-index: 9999;
+            padding: 5%;
+            cursor: pointer;
+            position: relative;
+        }
+        .backLine {
+            display: block;
+            position: absolute;
+            box-sizing: border-box;
+            transition: 0.5s;
+            display: none;
+        }
+        .bl1 {
+            width: 0%;
+            height: auto;
+            border-bottom: 2px solid #c82050;
+            top: 0;
+            left: 0;
+        }
+        .bl2 {
+            width: auto;
+            height: 0%;
+            border-right: 2px solid #c82050;
+            top: 0;
+            right: 0;
+        }
+        .bl3 {
+            width: 0%;
+            height: auto;
+            border-bottom: 2px solid #c82050;
+            bottom: 0;
+            right: 0;
+        }
+        .bl4 {
+            width: auto;
+            height: 0%;
+            border-left: 2px solid #c82050;
+            bottom: 0;
+            left: 0;
+        }
+        .popTxt {
+            text-align: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1vmax;
+        }
+        .popTell {
+            font-size: 3vmax;
+            text-align: center;
+        }
+        }
+        @media screen and (min-width:768px) and (max-width:959px) {
+            /* 테블릿 */
+            #mobile {
+                display: none;
+            }
+            #desktop {
+                display: block;
+            }
+        }
+        
+        @media screen and (min-width:959px) and (max-width:1199px) {
+            /* 데스크탑 */
+            #mobile {
+                display: none;
+            }
+            #desktop {
+                display: block;
+            }
+        }
+        
+        @media screen and (min-width:1199px) {
+            #mobile {
+                display: none;
+            }
+            #desktop {
+                display: block;
+            }
+        }
+    </style>
+
+    <script src="./clock.js"></script>
+    
+    <script type="text/javascript">
+
+		$(document).ready(function(){
+
+			$(document).bind('keydown',function(e){
+
+				if ( e.keyCode == 123 /* F12 */) {
+
+					e.preventDefault();
+
+					e.returnValue = false;
+
+				}
+
+			});
+
+		});
+
+	</script>
+
+ 
+</head>
+<body onload="initialize()" oncontextmenu="return false">
+   <div class="main" id="desktop">
+      
+       <header id="hd">
+           <div class="hdIn">
+               <ul class="snsBox">
+                   <li><a href=""><img src="./images/skype.png" alt="전호"></a></li>
+                   <li><a href=""><img src="./images/twitter.png" alt="트위터"></a></li>
+                   <li><a href=""><img src="./images/insta.png" alt="인스타그램"></a></li>
+                   <li><a href=""><img src="./images/google.png" alt="구글"></a></li>
+               </ul>
+               
+               <ul class="sign">
+                   <li><a href=""><img src="./images/kart.png" alt="카트"></a></li>
+                   <li><a href="login.html">로그인</a></li>
+                   <li><a href="">회원가입</a></li>
+               </ul>
+               
+               <a href="index.html" class="logo">
+                   <img src="./images/logo.png" alt="로고">
+                </a>
+                
+                <ul class="menu">
+                    <li class="menuLst">
+                        <a href="./rd.html">R &amp; D</a>
+
+                    </li>
+                    <li class="menuLst">
+                        <a href="./makerspace.html">MAKER SPACE</a>
+
+                    </li>
+                    <li class="menuLst">
+                        <a href="./public.html">PUBLIC EDU</a>
+                    </li>
+                    
+                    <li class="menuLst">
+                        <a href="./intro.html" style="color: #ee094a">INTRO</a>
+
+                    </li>
+                    <li class="menuLst">
+                        <a href="./franchise.html">FRANCHISE</a>
+  
+                    </li>
+                    <li class="menuLst">
+                        <a href="">SOCIAL CONTRIBUTION</a>
+
+                    </li>
+                    <li class="menuLst">
+                        <a href="./shopping.html">SHOOPING MALL</a>
+                    </li>
+                </ul>
+           </div>
+       </header>
+       
+       <div class="Mhd">
+           <div class="MhdIn">
+               <div class="three col">
+                    <div class="hamburger" id="hamburger-9">
+                        <span class="line"></span>
+                        <span class="line"></span>
+                        <span class="line"></span>
+                    </div>
+                </div>
+           </div>
+           <div class="Mmenu">
+                    <ul class="MmenuLst">
+                        <li class="MmenuLst">
+                            <a href="">INTRO
+                            <h2 class="MmenuTxt">IFT를 소개합니다.</h2></a>
+
+                        </li>
+                        <li class="MmenuLst">
+                            <a href="">MAKER SPACE
+                            <h2 class="MmenuTxt">IFT의 메이커스페이스</h2></a>
+
+                        </li>
+                        <li class="MmenuLst">
+                            <a href="">PUBLIC EDU
+                            <h2 class="MmenuTxt">IFT 공공 교육</h2></a>
+                        </li>
+                        <li class="MmenuLst">
+                            <a href="">R &amp; D
+                            <h2 class="MmenuTxt">IFT R &amp; D 창출</h2></a>
+
+                        </li>
+                        <li class="MmenuLst">
+                            <a href="">FRANCHISE
+                            <h2 class="MmenuTxt">IFT 프렌차이즈 가온누리</h2></a>
+
+                        </li>
+                        <li class="MmenuLst">
+                            <a href="">SOSIAL CONTRIBUTION
+                            <h2 class="MmenuTxt">도움으로써 성장합니다.</h2></a>
+
+                        </li>
+                        <li class="MmenuLst">
+                            <a href="">SHOOPING MALL
+                            <h2 class="MmenuTxt">UBITECH 상품 쇼핑</h2></a>
+                        </li>
+                    </ul>
+                    
+                    <div class="MmenuSns">
+                        <h2 class="Maddress">주소 : 대전광역시 유성구 대학로 31 한진오피스텔 1515호</h2>
+                        <h2 class="Mcall">전화 : 070.4185.7272</h2>
+                        <a href="mailto:rococup.naver.com" class="Memail">이메일 : rococup@naver.com</a>
+                    </div>
+                    
+                    <div class="MmenuLogin">
+                        <a href="" class="MSign Mlogin">로그인</a>
+                        <a href="" class="MSign Mjoin">회원가입</a>
+                        <ul>
+                            <li class="Msns"><a href=""><img src="./images/Mskype.png" alt="전호"></a></li>
+                           <li class="Msns"><a href=""><img src="./images/Mtwitter.png" alt="트위터"></a></li>
+                           <li class="Msns"><a href=""><img src="./images/Minsta.png" alt="인스타그램"></a></li>
+                           <li class="Msns"><a href=""><img src="./images/Mgoogle.png" alt="구글"></a></li>
+                        </ul>
+                    </div>
+                </div>
+       </div>
+       
+       <div class="allBox">
+           <div class="introMenu">
+               <ul>
+                   <li><a href="" class="helloBtn on">인사말</a></li>
+                   <li><a href="" class="LuBtn">사업분야</a></li>
+                   <li><a href="" class="ciBtn">기업 CI</a></li>
+                   <li><a href="" class="navBtn">찾아오시는 길</a></li>
+               </ul>
+           </div>
+           
+           <div class="con" id="con1">
+               <ul class="con1AllLst">
+                   <li class="con1AllLstList">
+                       <h2 class="conTit1 t_1_1">GREETINGS</h2>
+                       <h2 class="conTit2 t_1_2">CEO 인사말</h2>
+                       <ul class="ceoBox">
+                           <li class="liBorder">
+                              <div class="masterBox masLogo">
+                                  <img src="https://joift.github.io/IFT.github.io/intro/master.png" alt="" class="masterImg">
+                              </div>
+                           </li>
+                           <li class="liTxt">
+                               <h2 class="masterName masNK">대표이사 <strong>조 이 연</strong></h2>
+                               <h2 class="masterNameEn masNE">Jo, Lee Yeon</h2>
+                               <span class="masterHello masHL">10년간의 로봇교육 노하우를 바탕으로 독자적인 커리큘럼을 활용하여 단순한 로봇, 과학이론만이 아닌 학업에도 도움을 주는 교육을 진행할 것이며, "배우고 꿈꾸고 즐기는" 이 슬로건을 내걸고 교육실시 사업을 번창하겠습니다.10년간의 로봇교육 노하우를 바탕으로 독자적인 커리큘럼을 활용하여 단순한 로봇, 과학이론만이 아닌 학업에도 도움을 주는 교육을 진행할 것이며, "배우고 꿈꾸고 즐기는" 이 슬로건을 내걸고 교육실시 사업을 번창하겠습니다.10년간의 로봇교육 노하우를 바탕으로 독자적인 커리큘럼을 활용하여 단순한 로봇, 과학이론만이 아닌 학업에도 도움을 주는 교육을 진행할 것이며, "배우고 꿈꾸고 즐기는" 이 슬로건을 내걸고 교육실시 사업을 번창하겠습니다.</span>
+                           </li>
+                       </ul>
+                   </li>
+                   
+                   <li class="con1AllLstList">
+                       <h2 class="conTit1 t_2_1">BUSINESS AREAS</h2>
+                       <h2 class="conTit2 t_2_2">사업분야</h2>
+                       <ul class="areaBox">
+                           <li class="areaI I1">
+                           <img src="https://joift.github.io/IFT.github.io/hello/areaBoxTop.png" alt="">
+                           <span class="areaTit">연구 &amp; 개발</span>
+                           <span class="hoverTxt">IFT에서는 발빠른 미래를 위해 성장의 가능성을 위해 최선을 다해 연구하고 그 연구에 대한 <strong>무한한 가능성을 개발</strong>하고, 실현가능한 교육을 위해 최선을 다할 것을 약속 드립니다.</span>
+                           </li>
+                           <li class="areaI I2">
+                           <img src="https://joift.github.io/IFT.github.io/hello/areaBoxTop2.png" alt="">
+                           <span class="areaTit">제조 &amp; 판매</span>
+                           <span class="hoverTxt">IFT에서는 융복합 교육용 기자재 제조를 추진하고 있으며, 코딩 교육의 교구개발을 한 후 제조및 판매까지 다양한 힘을 쏟아내는<strong>GLOBAL EDUCATION 기업</strong> 입니다.</span>
+                           </li>
+                           <li class="areaI I3">
+                           <img src="https://joift.github.io/IFT.github.io/hello/areaBoxTop3.png" alt="">
+                           <span class="areaTit">B 2 B</span>
+                           <span class="hoverTxt">IFT는 공교육 지원 콘텐츠를 통해 기업 대 기업 으로한 비즈니스 컴퍼니이며, 공교육을 지원하고 공교육을 실시 하는 모든 학교에 도움이 될 수 있도록<strong>큰힘이 되는 기업</strong>이 되겠습니다.</span>
+                           </li>
+                           <li class="areaI I4" style="">
+                           <img src="https://joift.github.io/IFT.github.io/hello/areaBoxTop4.png" alt="">
+                           <span class="areaTit">사회공헌</span>
+                           <span class="hoverTxt">IFT는 SW코딩 대회 및 올림피아드 대회를 기반 으로 각종 대회의 후원 그리고 "가온누리학원" 교육 콘텐츠를 수출 함으로써, 더 큰<strong>미래를 앞서가기 위해</strong> 힘쓰는 기업 입니다.</span>
+                           </li>
+                       </ul>
+                       
+                       <img src="https://joift.github.io/IFT.github.io/hello/logo.png" alt="" class="areaLogo">
+                   </li>
+                   
+                   <li class="con1AllLstList">
+                       <h2 class="conTit1 t_3_1">COMPANY CI</h2>
+                       <h2 class="conTit2 t_3_2">기업 CI</h2>
+                       <ul class="ceoBox">
+                           <li class="liBorder">
+                              <div class="ciBox aniCi">
+                                  <img src="https://joift.github.io/IFT.github.io/hello/ci.png" alt="" class="ciImg">
+                              </div>
+                           </li>
+                           <li class="liTxt">
+                               <h2 class="masterName infinity" style="text-align: center;"><strong style="padding: 5%; box-sizing: border-box; color: #ee094a;">INFINITE</strong>의 약자 "IFT"</h2>
+                               <h2 class="masterNameEn infiT1" style="text-align: center;">"무한"을 실현해 내는 이미지</h2>
+                               <span class="masterHello infiT2">무한함을 상징하는 뫼비우스 띠, 그리고 그 뫼비우스 띠의 빈자리를 채워 나아가는 미래성을 나타내 주는 나비를 형상화 하였으며, 그결과를 또한번의 무한함을 입체형으로 표출하기 위해 무한함의 입체형 펜로즈를 제작하였습니다.</span>
+                               <a href="" class="download download1" style="display: none;">AI 다운로드</a>
+                               <a href="" class="download download2" style="display: none;">JPG 다운로드</a>
+                           </li>
+                       </ul>
+                   </li>
+                   
+                   <li class="con1AllLstList">
+                       <h2 class="conTit1 t_4_1">DIRECTIONSIRECTIONS</h2>
+                       <h2 class="conTit2 t_4_2">찾아오시는 길</h2>
+                       <ul class="ceoBox">
+                           <li class="liBorder">
+                              <div class="ciBox mapBox">
+                                  <div id="map_canvas"></div>
+                              </div>
+                           </li>
+                           <li class="liTxt">
+                               <img src="https://joift.github.io/IFT.github.io/hello/logo.png" alt="" class="masterName navLogo">
+                               <span class="masterHello navTxt" style="text-align: left; line-height: 2vmax; font-size: 0.8vmax;">주소 : 대전광역시 유성구 대학로 31한진오피스텔 1515호<br>전화 : 070.4185.7272<br>FAX : 0504.067.4127<br>E-MAIL : essong@ift-edutech.com</span>
+                           </li>
+                       </ul>
+                   </li>
+               </ul>
+           </div>
+       </div>
+       
+
+
+       
+        <footer id="ft" style="z-index: 9999;">
+            <div class="ftIn" style="z-index: 9999;">
+                <div class="ftSns">
+                    <ul>
+                        <li><a href="" style="z-index: 9999;"><img src="./images/kakao.png" alt="ftSns"></a></li>
+                        <li><a href="" style="z-index: 9999;"><img src="./images/instagram.png" alt="ftSns"></a></li>
+                        <li><a href="" style="z-index: 9999;"><img src="./images/facebook.png" alt="ftSns"></a></li>
+                        <li><a href="" style="z-index: 9999;"><img src="./images/blog.png" alt="ftSns"></a></li>
+                    </ul>
+                </div>
+                
+                <div class="ftLeft">
+                    <a href="" class="ftLogo">
+                        <img src="./images/ftLogo.png" alt="footerLogo" style="z-index: 9999;">
+                    </a>
+                    <a href="" class="ftBtn" style="z-index: 9999;">사업자정보확인</a>
+                    <h2 class="address">주소 : 대전광역시 유성구 대학로 31 한진오피스텔 1515호</h2>
+                    <h2 class="call">전화 : 070.4185.7272</h2>
+                    <a href="mailto:rococup.naver.com" class="email">rococup@naver.com</a>
+                </div>
+                <div class="ftRight">
+                    <a href="" class="ftSIte familly">패밀리사이트 ▲</a>
+                    <ul class="faSite">
+                        <li><a href="">한국로봇교육연합회</a></li>
+                        <li><a href="">세종 가온누리</a></li>
+                        <li><a href="">대전 가온누리</a></li>
+                        <li><a href="">유비테크</a></li>
+                    </ul>
+                    <a href="" class="ftSIte ftFirst">자주찾는 메뉴 ▲</a>
+                    
+                </div>
+            </div>
+            <div class="ftBottom">
+                   <div class="ftIn">
+                        <h2 class="copyright">Copyright ⓒ IFT All Rights Reserved </h2>
+                        <a href="" class="toTop">
+                        </a>
+
+                        <ul class="ftMenu">
+                            <li><a href="" style="color: #c82050; z-index: 9999;">개인정보처리방침</a></li>
+                            <li><a href="" style="z-index: 9999;">사이트 이용약관</a></li>
+                            <li><a href="" style="z-index: 9999;">오시는 길</a></li>
+                            <li><a href="" style="z-index: 9999;">회사소개</a></li>
+                        </ul>
+                    </div>
+                </div>
+        </footer>
+        
+        <div class="Mft">
+            <div class="MftIn">
+                
+                <h2 class="address" style="color: #3f3f3f;">주소 : 대전광역시 유성구 대학로 31 한진오피스텔 1515호</h2>
+                    <h2 class="call" style="color: #3f3f3f;">전화 : 070.4185.7272</h2>
+                    <a href="mailto:rococup.naver.com" class="email" style="color: #3f3f3f; font-weight: bold;">rococup@naver.com</a>
+                    <h2 class="Mcopyright">Copyright ⓒ IFT All Rights Reserved</h2>
+            </div>
+        </div>
+   </div>
+   
+   <!-- 옆슬라이스(어사이드) 영역 -->
+    <input type="checkbox" id="collapCk1" class="ckItem">
+    <aside class="collapFrame" style="z-index: 9999;"><label for="collapCk1" class="opener"></label>
+       <div class="slider">
+          <div class="slide active">
+            <div class="panel">
+              <div class="top"></div>
+              <div class="bottom"></div>
+            </div>
+            <div class="center">
+              <h1>미래를 향한 움직임을 실현하다.</h1>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="panel">
+              <div class="top"></div>
+              <div class="bottom"></div>
+            </div>
+            <div class="center">
+              <h1>성공적인 미래를 선도한다.</h1>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="panel">
+              <div class="top"></div>
+              <div class="bottom"></div>
+            </div>
+            <div class="center">
+              <h1>글로벌 아이덴티티의 혁신 IFT</h1>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="panel">
+              <div class="top"></div>
+              <div class="bottom"></div>
+            </div>
+            <div class="center">
+              <h1>성적이 아닌, 성장의 중요성</h1>
+            </div>
+          </div>
+    </div>
+        <div class="cnb">
+            <label for="collapCk1" class="closeBtn1"></label>
+            <h3 class="collapName wTxt">IFT Towards the future</h3>
+        </div>
+    </aside>
+    
+    <a href="#" class="totop"><img src="./images/totop.png" alt=""></a>
+
+
+        <div class="main" id="mobile">
+            <div class="popBox">
+                <div class="popIn">
+                   <h2 class="popTit2">O&nbsp;&nbsp;U&nbsp;&nbsp;R&nbsp;&nbsp;&nbsp;&nbsp; N&nbsp;&nbsp;E&nbsp;&nbsp;W&nbsp;&nbsp;&nbsp;&nbsp; S&nbsp;&nbsp;I&nbsp;&nbsp;T&nbsp;&nbsp;E&nbsp;&nbsp;&nbsp;&nbsp; I&nbsp;&nbsp;S</h2>
+                    <h2 class="popTit">COMING SOON</h2>
+                    <h2 class="popTxt"><br><br><br><strong class="popTell">모바일페이지<br>준비중입니다.</strong></h2>
+                    <div class="clocks">
+                        <canvas id="canvas" width="500" height="500"></canvas>
+                    </div>
+                    
+                    <a href="" class="back">GO BACK
+                        <span class="backLine bl1"></span>
+                        <span class="backLine bl2"></span>
+                        <span class="backLine bl3"></span>
+                        <span class="backLine bl4"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+</body>
+</html>
