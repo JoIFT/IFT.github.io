@@ -375,7 +375,7 @@
         }
         .introMenu ul li {
             float: left;
-            width: 25%;
+            width: 33.33%;
             height: auto;
             box-sizing: border-box;
         }
@@ -424,7 +424,7 @@
             overflow: hidden;
         }
         .con1AllLst {
-            width: 400%;
+            width: 300%;
             height: auto;
         }
         .con1AllLst:after {
@@ -434,7 +434,7 @@
         }
         .con1AllLst li.con1AllLstList {
             float: left;
-            width: 25%;
+            width: 33.33%;
             height: auto;
             position: relative;
         }
@@ -646,32 +646,23 @@
     <script>
         $(document).ready(function(){
             $(".introMenu ul li a").removeAttr("href");
-            $("#con1 .conTit1.t_1_1").delay(1000).animate({"opacity": "1"}, 500);
-            $("#con1 .conTit2.t_1_2").delay(1500).animate({"opacity": "1"}, 500);
-            $("#con1 .masLogo").delay(2000).animate({"opacity": "1"}, 500);
-            $("#con1 .masNK").delay(2500).animate({"opacity": "1"}, 500);
-            $("#con1 .masNE").delay(2200).animate({"opacity": "1"}, 500);
-            $("#con1 .masHL").delay(2700).animate({"opacity": "1"}, 500);
+            $("#con1 .conTit1.t_2_1").delay(1000).animate({"opacity": "1"}, 500);
+                $("#con1 .conTit2.t_2_2").delay(1500).animate({"opacity": "1"}, 500);
+                $(".I1").delay(2000).animate({"opacity": "1"}, 500);
+                $(".I2").delay(2500).animate({"opacity": "1"}, 500);
+                $(".I3").delay(3000).animate({"opacity": "1"}, 500);
+                $(".I4").delay(3500).animate({"opacity": "1"}, 500);
+                $(".t_3_1, .t_3_2, .aniCi, .infinity, .infiT1, .infiT2, .download").stop().css("opacity", "0");
+                $(".aniCi").stop().css("margin-top", "30%");
+                $(".t_4_1, .t_4_2, .mapBox, .navLogo, .navTxt").stop().css("opacity", "0");
+                $(".t_1_1, .t_1_2, .masLogo, .masNK, .masNE, .masHL").stop().css("opacity", "0");
             
             $(".introMenu ul li a").click(function(){
                 $(this).addClass("on");
                 $(this).parent().siblings().find("a").removeClass("on");
             });
-            $(".helloBtn").click(function(){
-                $(".con1AllLst").stop().not(":animated").animate({"margin-left": "0%"}, 800);
-                $("#con1 .conTit1.t_1_1").delay(1000).animate({"opacity": "1"}, 500);
-                $("#con1 .conTit2.t_1_2").delay(1500).animate({"opacity": "1"}, 500);
-                $("#con1 .masLogo").delay(2000).animate({"opacity": "1"}, 500);
-                $("#con1 .masNK").delay(2500).animate({"opacity": "1"}, 500);
-                $("#con1 .masNE").delay(2200).animate({"opacity": "1"}, 500);
-                $("#con1 .masHL").delay(2700).animate({"opacity": "1"}, 500);
-                $(".t_2_1, .t_2_2, .I1, .I2, .I3, .I4").stop().css("opacity", "0");
-                $(".t_3_1, .t_3_2, .aniCi, .infinity, .infiT1, .infiT2, .download").stop().css("opacity", "0");
-                $(".aniCi").stop().css("margin-top", "30%");
-                $(".t_4_1, .t_4_2, .mapBox, .navLogo, .navTxt").stop().css("opacity", "0");
-            });
             $(".LuBtn").click(function(){
-                $(".con1AllLst").stop().not(":animated").animate({"margin-left": "-100%"}, 800);
+                $(".con1AllLst").stop().not(":animated").animate({"margin-left": "0%"}, 800);
                 $("#con1 .conTit1.t_2_1").delay(1000).animate({"opacity": "1"}, 500);
                 $("#con1 .conTit2.t_2_2").delay(1500).animate({"opacity": "1"}, 500);
                 $(".I1").delay(2000).animate({"opacity": "1"}, 500);
@@ -684,7 +675,7 @@
                 $(".t_1_1, .t_1_2, .masLogo, .masNK, .masNE, .masHL").stop().css("opacity", "0");
             });
             $(".ciBtn").click(function(){
-                $(".con1AllLst").stop().not(":animated").animate({"margin-left": "-200%"}, 800);
+                $(".con1AllLst").stop().not(":animated").animate({"margin-left": "-100%"}, 800);
                 $("#con1 .conTit1.t_3_1").delay(1000).animate({"opacity": "1"}, 500);
                 $("#con1 .conTit2.t_3_2").delay(1500).animate({"opacity": "1"}, 500);
                 $(".aniCi").delay(3200).animate({"margin-top": "5%", "opacity": "1"}, 500);
@@ -698,7 +689,7 @@
                 $(".t_1_1, .t_1_2, .masLogo, .masNK, .masNE, .masHL").stop().css("opacity", "0");
             });
             $(".navBtn").click(function(){
-                $(".con1AllLst").stop().not(":animated").animate({"margin-left": "-300%"}, 800);
+                $(".con1AllLst").stop().not(":animated").animate({"margin-left": "-200%"}, 800);
                 $("#con1 .conTit1.t_4_1").delay(1000).animate({"opacity": "1"}, 500);
                 $("#con1 .conTit2.t_4_2").delay(1500).animate({"opacity": "1"}, 500);
                 $("#con1 .mapBox").delay(2000).animate({"opacity": "1"}, 500);
@@ -1032,8 +1023,7 @@
        <div class="allBox">
            <div class="introMenu">
                <ul>
-                   <li><a href="" class="helloBtn on">인사말</a></li>
-                   <li><a href="" class="LuBtn">사업분야</a></li>
+                   <li><a href="" class="LuBtn on">사업분야</a></li>
                    <li><a href="" class="ciBtn">기업 CI</a></li>
                    <li><a href="" class="navBtn">찾아오시는 길</a></li>
                </ul>
@@ -1041,7 +1031,7 @@
            
            <div class="con" id="con1">
                <ul class="con1AllLst">
-                   <li class="con1AllLstList">
+                   <!-- <li class="con1AllLstList">
                        <h2 class="conTit1 t_1_1">GREETINGS</h2>
                        <h2 class="conTit2 t_1_2">CEO 인사말</h2>
                        <ul class="ceoBox">
@@ -1057,6 +1047,7 @@
                            </li>
                        </ul>
                    </li>
+                   -->
                    
                    <li class="con1AllLstList">
                        <h2 class="conTit1 t_2_1">BUSINESS AREAS</h2>
